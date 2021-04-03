@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Level Spawn
   - Level
+  - Red
+  - Blue
+  - Green
+  - Yellow
+  - Orange
+  - Purple
   layers:
   - Default
   - TransparentFX
