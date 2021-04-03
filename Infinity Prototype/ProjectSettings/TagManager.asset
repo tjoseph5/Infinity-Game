@@ -12,6 +12,7 @@ TagManager:
   - Yellow
   - Orange
   - Purple
+  - Pressure_Pad
   layers:
   - Default
   - TransparentFX
