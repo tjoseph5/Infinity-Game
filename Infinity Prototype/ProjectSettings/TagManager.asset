@@ -13,6 +13,7 @@ TagManager:
   - Orange
   - Purple
   - Pressure_Pad
+  - Player Turret
   layers:
   - Default
   - TransparentFX
