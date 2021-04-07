@@ -130,11 +130,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcacf891da2af774790d266925550ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayLength: 0
   playerMeshes:
   - {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   movementControl: {fileID: 8312313566688332000, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
   jumpControl: {fileID: -728119625344098243, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
+  interactControl: {fileID: 3860830824011534203, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
   playerSpeed: 10
   jumpHeight: 1
   gravityValue: -9.81
