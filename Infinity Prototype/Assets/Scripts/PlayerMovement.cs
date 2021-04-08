@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     private bool groundedPlayer;
     private Transform cameraMainTransform;
 
+    public GameObject mainCam;
+    public GameObject turretCam;
+
     Vector3 rayDir; //raycast vector that places the raycast's position
     [SerializeField] float rayLength; //length of raycast
     RaycastHit rayHit; //raycast collider
@@ -79,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
         //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x * 0, gameObject.transform.eulerAngles.y * 0, gameObject.transform.eulerAngles.z * 0);
 
+        mainCam.SetActive(true);
+        turretCam.SetActive(false);
+
 
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
@@ -132,11 +138,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("hitsomething");
 
-                if(rayHit.collider.tag == "Player Turret")
+                if (playerState == PlayerState.Standard)
                 {
-                    Debug.Log("using turret");
-                    playerState = PlayerState.Turret;
-                    gameObject.transform.eulerAngles = new Vector3(rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.x * 0, rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.y * 0, rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.z * 0);
+                    if (rayHit.collider.tag == "Player Turret")
+                    {
+                        mainCam.GetComponent<Cinemachine.CinemachineFreeLook>().m_XAxis.Value = 0;
+                        mainCam.GetComponent<Cinemachine.CinemachineFreeLook>().m_YAxis.Value = 0.39f;
+                        Debug.Log("using turret");
+                        playerState = PlayerState.Turret;
+                        gameObject.transform.eulerAngles = new Vector3(rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.x * 0, rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.y * 0, rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.z * 0);
+                    }
                 }
             }
         }
@@ -144,12 +155,17 @@ public class PlayerMovement : MonoBehaviour
 
     void TurretControls()
     {
+
+        mainCam.SetActive(false);
+        turretCam.SetActive(true);
+
         if (Physics.Raycast(this.transform.position, rayDir, out rayHit, rayLength, 1 << 0)) //checks to see if raycast is hitting a game object
         {
 
             if (rayHit.collider.tag == "Player Turret" && playerState == PlayerState.Turret)
             {
                 gameObject.transform.position = rayHit.collider.gameObject.transform.GetChild(0).transform.position;
+                //gameObject.transform.localRotation = rayHit.collider.gameObject.transform.GetChild(0).transform.localRotation;
             }
         }
 
