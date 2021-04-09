@@ -49,6 +49,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Turret Zoom In"",
+                    ""type"": ""Button"",
+                    ""id"": ""6eca7c9f-962d-4988-8174-ce671ae8f401"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Turret Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""f42b77fb-af06-415c-8a09-f8faff5dce01"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -183,6 +199,50 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d79c645f-1142-417b-b629-b3cdbb0db3f3"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turret Zoom In"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53c5fae8-50df-4244-ab52-391db9c84d19"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turret Zoom In"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42f3552a-0391-48e0-bb21-62887d958370"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turret Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0506726-86e4-4171-9bf1-271771eb9a1b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turret Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -195,6 +255,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_TurretZoomIn = m_Player.FindAction("Turret Zoom In", throwIfNotFound: true);
+        m_Player_TurretShoot = m_Player.FindAction("Turret Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -248,6 +310,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_TurretZoomIn;
+    private readonly InputAction m_Player_TurretShoot;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -256,6 +320,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @TurretZoomIn => m_Wrapper.m_Player_TurretZoomIn;
+        public InputAction @TurretShoot => m_Wrapper.m_Player_TurretShoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -277,6 +343,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @TurretZoomIn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurretZoomIn;
+                @TurretZoomIn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurretZoomIn;
+                @TurretZoomIn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurretZoomIn;
+                @TurretShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurretShoot;
+                @TurretShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurretShoot;
+                @TurretShoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurretShoot;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -293,6 +365,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @TurretZoomIn.started += instance.OnTurretZoomIn;
+                @TurretZoomIn.performed += instance.OnTurretZoomIn;
+                @TurretZoomIn.canceled += instance.OnTurretZoomIn;
+                @TurretShoot.started += instance.OnTurretShoot;
+                @TurretShoot.performed += instance.OnTurretShoot;
+                @TurretShoot.canceled += instance.OnTurretShoot;
             }
         }
     }
@@ -303,5 +381,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnTurretZoomIn(InputAction.CallbackContext context);
+        void OnTurretShoot(InputAction.CallbackContext context);
     }
 }
