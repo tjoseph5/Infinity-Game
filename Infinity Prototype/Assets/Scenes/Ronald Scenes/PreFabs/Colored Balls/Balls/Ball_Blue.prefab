@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5901048184900526151}
   m_Layer: 0
   m_Name: Ball_Blue
-  m_TagString: Blue
+  m_TagString: Holdable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ball_Spawn: {fileID: 451116544406624197, guid: 57b8293399749f942861e074a91fd7d9, type: 3}
+  ballColor: 3
+  materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!54 &5901048184900526151
 Rigidbody:
   m_ObjectHideFlags: 0

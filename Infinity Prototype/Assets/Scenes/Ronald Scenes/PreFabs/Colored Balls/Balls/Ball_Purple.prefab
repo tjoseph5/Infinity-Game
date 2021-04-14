@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4629183321779869858}
   m_Layer: 0
   m_Name: Ball_Purple
-  m_TagString: Purple
+  m_TagString: Holdable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ball_Spawn: {fileID: 2791058701944017204, guid: 87edad035c36909448cb54df78440cd9, type: 3}
+  ballColor: 4
+  materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!54 &4629183321779869858
 Rigidbody:
   m_ObjectHideFlags: 0
