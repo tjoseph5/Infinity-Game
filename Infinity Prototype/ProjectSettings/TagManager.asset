@@ -14,6 +14,7 @@ TagManager:
   - Purple
   - Pressure_Pad
   - Player Turret
+  - Button
   layers:
   - Default
   - TransparentFX

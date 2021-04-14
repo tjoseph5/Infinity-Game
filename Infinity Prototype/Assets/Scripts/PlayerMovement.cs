@@ -85,7 +85,15 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.Mini: //This state scales the player to a small size of 0.3. This uses the same function as Standard State.
                 StandardMovement();
                 break;
-        }  
+        }
+        //Ronnie part to check if raycast hits the button, to start Button Hit function on button
+        if (Physics.Raycast(this.transform.position, rayDir, out rayHit, rayLength, 1 << 0)) //checks to see if raycast is hitting a game object
+        {
+            if (rayHit.collider.tag == "Button")
+            {
+                rayHit.collider.gameObject.GetComponent<Pressable_Button>().ButtonPress();
+            }
+        }
     }
 
 
