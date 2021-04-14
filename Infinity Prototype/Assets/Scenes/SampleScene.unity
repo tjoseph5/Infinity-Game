@@ -20098,11 +20098,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 653656109305361298, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017126903
+      value: -0.000000017149931
       objectReference: {fileID: 0}
     - target: {fileID: 653656109305361298, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000013907682
+      value: 0.0000000013926381
       objectReference: {fileID: 0}
     - target: {fileID: 653656109622498350, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_Name
@@ -20110,7 +20110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 653656109622498350, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 653656109622498351, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_Enabled
@@ -20186,11 +20186,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 653656110298793843, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000043122714
+      value: -0.000000004293093
       objectReference: {fileID: 0}
     - target: {fileID: 653656110298793843, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -2.7152866e-10
+      value: 2.7032102e-10
       objectReference: {fileID: 0}
     - target: {fileID: 653656110465272078, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20210,11 +20210,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 653656110465272078, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1.0720301e-15
+      value: -0.0000000044437445
       objectReference: {fileID: 0}
     - target: {fileID: 653656110465272078, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -1.009499e-16
+      value: 4.4234486e-10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 250cd154e008e464084537ef0fcc464e, type: 3}
@@ -20228,6 +20228,10 @@ PrefabInstance:
     - target: {fileID: 3244799611252206784, guid: c4917025c819e834d92dcfb8f367d84f, type: 3}
       propertyPath: m_Name
       value: Turret Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244799611252206784, guid: c4917025c819e834d92dcfb8f367d84f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3244799611252206789, guid: c4917025c819e834d92dcfb8f367d84f, type: 3}
       propertyPath: XYAxis
@@ -20297,7 +20301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706098, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: field of view
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706098, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: far clip plane
@@ -20317,31 +20321,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706101, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.839998
+      value: 21.749998
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706101, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.19
+      value: 4.4200196
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706101, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -115.03
+      value: -119.548584
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706101, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9970343
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706101, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.07695842
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706101, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.000000033566348
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706101, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0000000025908968
       objectReference: {fileID: 0}
     - target: {fileID: 4381773476610706101, guid: 03dbfbf9252b40e45bbf2df1f3a1f938, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -20373,21 +20377,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1894669163}
     - target: {fileID: 9109665649845897186, guid: 2d518dfe319144342a3c0ca21dcaca2c, type: 3}
-      propertyPath: rayLength
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109665649845897186, guid: 2d518dfe319144342a3c0ca21dcaca2c, type: 3}
       propertyPath: turretCam
       value: 
       objectReference: {fileID: 1397664707}
-    - target: {fileID: 9109665649845897186, guid: 2d518dfe319144342a3c0ca21dcaca2c, type: 3}
-      propertyPath: turretShoot
-      value: 
-      objectReference: {fileID: -1086439410647065150, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
-    - target: {fileID: 9109665649845897186, guid: 2d518dfe319144342a3c0ca21dcaca2c, type: 3}
-      propertyPath: turretZoomIn
-      value: 
-      objectReference: {fileID: -741654089962727520, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
     - target: {fileID: 9109665649845897190, guid: 2d518dfe319144342a3c0ca21dcaca2c, type: 3}
       propertyPath: m_RootOrder
       value: 2

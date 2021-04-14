@@ -86,14 +86,6 @@ public class PlayerMovement : MonoBehaviour
                 StandardMovement();
                 break;
         }
-        //Ronnie part to check if raycast hits the button, to start Button Hit function on button
-        if (Physics.Raycast(this.transform.position, rayDir, out rayHit, rayLength, 1 << 0)) //checks to see if raycast is hitting a game object
-        {
-            if (rayHit.collider.tag == "Button")
-            {
-                rayHit.collider.gameObject.GetComponent<Pressable_Button>().ButtonPress();
-            }
-        }
     }
 
 
@@ -145,6 +137,26 @@ public class PlayerMovement : MonoBehaviour
         }
         #endregion
 
+        #region Player Movement (Rigidbody Variant)
+        /*
+        Vector2 movement = movementControl.action.ReadValue<Vector2>();
+        Vector3 move = new Vector3(movement.x, 0, movement.y) * Time.deltaTime * playerSpeed;
+        //move = cameraMainTransform.forward * move.z + cameraMainTransform.right * move.x;
+        //move.y = 0f;
+        transform.Translate(move);
+
+        #endregion
+
+
+        if (movement != Vector2.zero)
+        {
+            //float targetAngle = Mathf.Atan2(movement.x, movement.y) * Mathf.Rad2Deg + cameraMainTransform.eulerAngles.y;
+            //Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+        }
+        */
+        #endregion
+
         #region Player Scale State (Standard or Mini)
         //This changes the scale value depending on the state
         if (playerState == PlayerState.Standard)
@@ -182,6 +194,12 @@ public class PlayerMovement : MonoBehaviour
                         playerState = PlayerState.Turret;
                         //The upcoming ugly and long line just positions the rotation of the player to the rotation of the turret's rotation
                         gameObject.transform.eulerAngles = new Vector3(rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.x, rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.y, rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.z);
+                    }
+
+                    //Ronnie part to check if raycast hits the button, to start Button Hit function on button
+                    if (rayHit.collider.tag == "Button")
+                    {
+                        rayHit.collider.gameObject.GetComponent<Pressable_Button>().ButtonPress();
                     }
                 }
             }
