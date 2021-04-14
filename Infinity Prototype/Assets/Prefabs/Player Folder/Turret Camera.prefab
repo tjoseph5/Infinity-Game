@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3244799611252206790}
   - component: {fileID: 3244799611252206791}
+  - component: {fileID: 3244799611252206789}
   m_Layer: 0
   m_Name: Turret Camera
   m_TagString: Untagged
@@ -67,6 +68,21 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 3244799611768007312}
+--- !u!114 &3244799611252206789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3244799611252206784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  XYAxis: {fileID: 5532032071860692570, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
+  ZAxis: {fileID: 0}
 --- !u!1 &3244799611768007313
 GameObject:
   m_ObjectHideFlags: 0
