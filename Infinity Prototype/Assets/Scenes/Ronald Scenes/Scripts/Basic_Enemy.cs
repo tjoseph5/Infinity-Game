@@ -13,12 +13,12 @@ public class Basic_Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
+    //This moves the enemy in the desired direction
     void Update()
     {
         rb.velocity = Dir;
     }
-
+    //this flips the enemies direction when encountering a wall
     void OnCollisionEnter(Collision Col)
     {
         Dir = new Vector3(-Dir.x, -Dir.y, -Dir.z);

@@ -41883,6 +41883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1299534778}
+  dir: 1
 --- !u!65 &1299534780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63077,6 +63078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b89f8141701bf4a998a0cd6bdac04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallHeight: 0
   rb: {fileID: 5715597195827435836}
 --- !u!1001 &5980584440130534346
 PrefabInstance:
