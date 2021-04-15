@@ -17668,6 +17668,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5980584440676384464, guid: 115b91fa5ecdbb344acda64a3fb0b7c2, type: 3}
   m_PrefabInstance: {fileID: 5980584440130534346}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &556829266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2002759355732555652, guid: bb5ccbaa96531d245af68a06f85d9121, type: 3}
+  m_PrefabInstance: {fileID: 2002759356170179464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &556829269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556829266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd6a759a9c05a542ab0a33d67e8159a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ball_Spawn: {fileID: 0}
+  ballColor: 1
+  materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!43 &561043812
 Mesh:
   m_ObjectHideFlags: 0
@@ -26864,6 +26889,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1770195747772521319, guid: 2d518dfe319144342a3c0ca21dcaca2c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851597659168683222, guid: 2d518dfe319144342a3c0ca21dcaca2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 9109665649845897186, guid: 2d518dfe319144342a3c0ca21dcaca2c, type: 3}
       propertyPath: mainCam
       value: 
@@ -28768,6 +28801,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &883329174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5216708479270064136, guid: 8da66b8edb869bb4592e93c9714cf79f, type: 3}
+  m_PrefabInstance: {fileID: 5216708478552718228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &883329177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883329174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd6a759a9c05a542ab0a33d67e8159a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ball_Spawn: {fileID: 0}
+  ballColor: 4
+  materials: []
 --- !u!4 &889755741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5865864961021486628, guid: eea22252522474849bc33533d8a1317e, type: 3}
@@ -35203,6 +35256,31 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1094438039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8901046635078670685, guid: 7e720742842e72642b404a5a456043a4, type: 3}
+  m_PrefabInstance: {fileID: 8901046634395581503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1094438042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094438039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd6a759a9c05a542ab0a33d67e8159a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ball_Spawn: {fileID: 0}
+  ballColor: 2
+  materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1101489447 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5865864961021486628, guid: eea22252522474849bc33533d8a1317e, type: 3}
@@ -48828,6 +48906,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5980584440676384464, guid: 115b91fa5ecdbb344acda64a3fb0b7c2, type: 3}
   m_PrefabInstance: {fileID: 1621037880}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1624572028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2802539090398991943, guid: c748a7b5e60f57049a4d837d92244e93, type: 3}
+  m_PrefabInstance: {fileID: 2802539091278161354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1624572031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624572028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd6a759a9c05a542ab0a33d67e8159a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ball_Spawn: {fileID: 0}
+  ballColor: 3
+  materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &1632862162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53016,7 +53119,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2708
+  m_Name: pb_Mesh-94526
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -55393,6 +55496,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5216708477603124917, guid: 8da66b8edb869bb4592e93c9714cf79f, type: 3}
   m_PrefabInstance: {fileID: 5216708478552718228}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1859418553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 887411147036255486, guid: b2d75c08bf5e4e44dabbde2e6bff2433, type: 3}
+  m_PrefabInstance: {fileID: 887411147765013858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1859418556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859418553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd6a759a9c05a542ab0a33d67e8159a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ball_Spawn: {fileID: 0}
+  ballColor: 0
+  materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &1864286531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61987,6 +62115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball_Green
       objectReference: {fileID: 0}
+    - target: {fileID: 6294461925562679160, guid: b08071f76b3427a4fb4abf6043eebe30, type: 3}
+      propertyPath: m_Mass
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b08071f76b3427a4fb4abf6043eebe30, type: 3}
 --- !u!1001 &887411147765013858
@@ -62134,6 +62266,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1870897105}
     m_Modifications:
+    - target: {fileID: 170540853920804004, guid: 17b253c2c28ea5a49b0a3fdef49fbf83, type: 3}
+      propertyPath: m_Mass
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2287556946448100113, guid: 17b253c2c28ea5a49b0a3fdef49fbf83, type: 3}
       propertyPath: m_Name
       value: Ball_Red
@@ -62317,6 +62453,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1870897105}
     m_Modifications:
+    - target: {fileID: 3232657781945414856, guid: c50b4df77f1d8a146b40ff769dc4a2ae, type: 3}
+      propertyPath: m_Mass
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3421865009159652473, guid: c50b4df77f1d8a146b40ff769dc4a2ae, type: 3}
       propertyPath: m_Name
       value: Ball_Yellow
@@ -62874,6 +63014,10 @@ PrefabInstance:
     - target: {fileID: 4614715414857260399, guid: 13b5ca66e68a37d40918241cfc98120d, type: 3}
       propertyPath: m_Name
       value: Ball_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901048184900526151, guid: 13b5ca66e68a37d40918241cfc98120d, type: 3}
+      propertyPath: m_Mass
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b5ca66e68a37d40918241cfc98120d, type: 3}
@@ -63662,6 +63806,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1870897105}
     m_Modifications:
+    - target: {fileID: 4629183321779869858, guid: 4c9d7b379a992b946a4ca9cc21d5ebc7, type: 3}
+      propertyPath: m_Mass
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6670943671589960058, guid: 4c9d7b379a992b946a4ca9cc21d5ebc7, type: 3}
       propertyPath: m_RootOrder
       value: 4

@@ -6,15 +6,15 @@ TagManager:
   tags:
   - Level Spawn
   - Level
-  - Red
-  - Blue
-  - Green
-  - Yellow
-  - Orange
-  - Purple
   - Pressure_Pad
   - Player Turret
   - Button
+  - Holdable
+  - Red
+  - Green
+  - Blue
+  - Purple
+  - Yellow
   layers:
   - Default
   - TransparentFX

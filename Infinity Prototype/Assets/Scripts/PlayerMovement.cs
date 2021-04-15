@@ -43,12 +43,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.0f; //Player's Jump Height
     [SerializeField] private float gravityValue = -9.81f; //Player's Gravity
     [SerializeField] private float rotationSpeed = 4; //Player Rotation Speed
+
+    float ballVelocity;
+    public float ballVelocityCap;
+    Rigidbody rb;
+    GameObject subRb;
     #endregion
 
-
+    #region Player States
     //Player's different state that determine forms and gameplay variables
     public enum PlayerState { Standard, Stationary, Turret, Ball, Mini}; 
     public PlayerState playerState = PlayerState.Standard;
+    #endregion
 
     void Awake()
     {
@@ -60,10 +66,13 @@ public class PlayerMovement : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         cameraMainTransform = Camera.main.transform;
         playerMesh = gameObject.GetComponent<MeshFilter>();
+        subRb = gameObject.transform.GetChild(2).gameObject;
+        rb = subRb.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        #region Player State Functions
         switch (playerState)
         {
             case PlayerState.Standard: //This is the player's standard state. This is the main state that allows the player to run, jump, interact with objects (picking up and dropping) and turrets
@@ -86,8 +95,19 @@ public class PlayerMovement : MonoBehaviour
                 StandardMovement();
                 break;
         }
+        #endregion
     }
 
+    void FixedUpdate()
+    {
+        if(playerState == PlayerState.Ball)
+        {
+            if (rb.velocity.magnitude > ballVelocityCap) //Limits velocity for the ball so it won't break the sound barrier and cause multiple glitches with collision detection
+            {
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, ballVelocityCap);
+            }
+        }
+    }
 
     void StandardMovement() //Function for Standard State
     {
@@ -99,6 +119,10 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().enabled = false;
         playerMesh.sharedMesh = playerMeshes[0];
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        subRb.gameObject.SetActive(true);
+
+        subRb.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.3f, gameObject.transform.position.z);
+        subRb.transform.localEulerAngles = gameObject.transform.localEulerAngles;
         //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x * 0, gameObject.transform.eulerAngles.y * 0, gameObject.transform.eulerAngles.z * 0);
 
         mainCam.SetActive(true);
@@ -162,10 +186,12 @@ public class PlayerMovement : MonoBehaviour
         if (playerState == PlayerState.Standard)
         {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
+            jumpHeight = 2.5f;
         }
         else if(playerState == PlayerState.Mini)
         {
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            jumpHeight = 1.5f;
         }
         #endregion
 
@@ -267,9 +293,16 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         playerMesh.sharedMesh = playerMeshes[1];
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        subRb.gameObject.SetActive(false);
+        rb = gameObject.GetComponent<Rigidbody>();
         gameObject.transform.localScale = new Vector3(1, 1, 1);
         //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x * 0, gameObject.transform.eulerAngles.y * 0, gameObject.transform.eulerAngles.z * 0);
+
+        //Rigidbody Values
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rb.mass = 1.3f;
+        rb.angularDrag = 1.5f;
+        ballVelocity = rb.velocity.magnitude;
         #endregion
 
         #region Movement

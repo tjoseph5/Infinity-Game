@@ -91,7 +91,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2287556946448100113}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ec67e2cab3c20d0438f93ac8b30f5bc2, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -112,11 +112,11 @@ MonoBehaviour:
   Ball_Spawn: {fileID: 6407091416807313773, guid: ce798716dcdb03649bf90fb6c5c0c2f4, type: 3}
   ballColor: 0
   materials:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 449679b3db481e64eb2df955967c3032, type: 2}
+  - {fileID: 2100000, guid: 162b2559f2129fa43b1b28da0a1e8f87, type: 2}
+  - {fileID: 2100000, guid: 32b6084a47844714e94a2b7a0b81c3a7, type: 2}
+  - {fileID: 2100000, guid: 01b0bf44c0e6e254f8ef53a104ad6c94, type: 2}
+  - {fileID: 2100000, guid: 32d9806865a696244b00256425975b8f, type: 2}
 --- !u!54 &170540853920804004
 Rigidbody:
   m_ObjectHideFlags: 0
