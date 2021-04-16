@@ -10,11 +10,6 @@ TagManager:
   - Player Turret
   - Button
   - Holdable
-  - Red
-  - Green
-  - Blue
-  - Purple
-  - Yellow
   layers:
   - Default
   - TransparentFX
