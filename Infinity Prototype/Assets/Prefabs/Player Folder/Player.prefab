@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7817626760000819059}
   m_Layer: 0
   m_Name: turret pointer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4727312268643324701}
   m_Layer: 0
   m_Name: rb
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,6 +256,7 @@ MonoBehaviour:
   rotationSpeed: 4
   ballVelocityCap: 15
   playerState: 0
+  springHeight: 0
 --- !u!135 &9109665649845897184
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -283,7 +284,7 @@ GameObject:
   - component: {fileID: 9109665649875952738}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

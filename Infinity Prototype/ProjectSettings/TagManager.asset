@@ -10,6 +10,7 @@ TagManager:
   - Player Turret
   - Button
   - Holdable
+  - Spring
   layers:
   - Default
   - TransparentFX

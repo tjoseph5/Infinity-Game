@@ -56,6 +56,12 @@ public class PlayerMovement : MonoBehaviour
     public PlayerState playerState = PlayerState.Standard;
     #endregion
 
+    #region Interactable Values
+
+    public float springHeight;
+
+    #endregion
+
     void Awake()
     {
         rayDir = this.transform.TransformVector(gameObject.transform.forward); //vector direction placement for raycast
@@ -119,7 +125,6 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().enabled = false;
         playerMesh.sharedMesh = playerMeshes[0];
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        subRb.gameObject.SetActive(true);
 
         subRb.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.3f, gameObject.transform.position.z);
         subRb.transform.localEulerAngles = gameObject.transform.localEulerAngles;
@@ -186,12 +191,19 @@ public class PlayerMovement : MonoBehaviour
         if (playerState == PlayerState.Standard)
         {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
-            jumpHeight = 2.5f;
+            jumpHeight = 3.3f;
+            springHeight = 5;
+            subRb.gameObject.SetActive(true);
+            gravityValue = -18.27f;
+
         }
         else if(playerState == PlayerState.Mini)
         {
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             jumpHeight = 1.5f;
+            springHeight = 6.7f;
+            subRb.gameObject.SetActive(false);
+            gravityValue = -9.81f;
         }
         #endregion
 
@@ -296,6 +308,7 @@ public class PlayerMovement : MonoBehaviour
         subRb.gameObject.SetActive(false);
         rb = gameObject.GetComponent<Rigidbody>();
         gameObject.transform.localScale = new Vector3(1, 1, 1);
+        springHeight = 100;
         //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x * 0, gameObject.transform.eulerAngles.y * 0, gameObject.transform.eulerAngles.z * 0);
 
         //Rigidbody Values
@@ -314,6 +327,21 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Spring")
+        {
+            if(playerState == PlayerState.Standard || playerState == PlayerState.Mini)
+            {
+                playerVelocity.y += Mathf.Sqrt(springHeight * -3.0f * gravityValue);
+            } 
+            else if(playerState == PlayerState.Ball)
+            {
+                rb.velocity += Vector3.up * springHeight;
+            }
+        }
     }
 
     #region Input Enable / Disable stuff
