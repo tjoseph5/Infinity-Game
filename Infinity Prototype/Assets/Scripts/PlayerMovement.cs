@@ -26,28 +26,28 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Player Meshes
-    MeshFilter playerMesh; //The player mesh
-    [SerializeField] Mesh[] playerMeshes = new Mesh[2]; //The meshes that the player states can switch between
+    public MeshFilter playerMesh; //The player mesh
+    public Mesh[] playerMeshes = new Mesh[2]; //The meshes that the player states can switch between
     #endregion
 
     #region Controller Input Actions
     [SerializeField] private InputActionReference movementControl; //The Input Action that moves the player
     [SerializeField] private InputActionReference jumpControl; //The Input Action that makes the player jump
-    [SerializeField] private InputActionReference interactControl; //The Input Action that makes the player interact with objects
+    [SerializeField] InputActionReference interactControl; //The Input Action that makes the player interact with objects
     [SerializeField] private InputActionReference turretZoomIn; //The Input Action that lets the player zoom in in Turret State (unused)
     [SerializeField] private InputActionReference turretShoot; //The Input Action that lets the player shoot during Turret State
     #endregion
 
     #region Player Values
     [SerializeField] private float playerSpeed = 2.0f; //Player's Movement Speed
-    [SerializeField] private float jumpHeight = 1.0f; //Player's Jump Height
-    [SerializeField] private float gravityValue = -9.81f; //Player's Gravity
+    public float jumpHeight = 1.0f; //Player's Jump Height
+    public float gravityValue = -9.81f; //Player's Gravity
     [SerializeField] private float rotationSpeed = 4; //Player Rotation Speed
 
-    float ballVelocity;
+    [HideInInspector]public float ballVelocity;
     public float ballVelocityCap;
-    Rigidbody rb;
-    GameObject subRb;
+    [HideInInspector]public Rigidbody rb;
+    [HideInInspector]public GameObject subRb;
     #endregion
 
     #region Player States
@@ -118,20 +118,23 @@ public class PlayerMovement : MonoBehaviour
     void StandardMovement() //Function for Standard State
     {
         #region Compentents
-        //This sets all of the correct components for the player in order for the standard movement to work 
+        //This sets all of the correct components for the player in order for the standard movement to work
+        /*
+        //Destroy(GetComponent<BallRicochet>());
         Destroy(GetComponent<Rigidbody>());
         gameObject.GetComponent<CharacterController>().enabled = true;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
         gameObject.GetComponent<SphereCollider>().enabled = false;
         playerMesh.sharedMesh = playerMeshes[0];
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        */
 
         subRb.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.3f, gameObject.transform.position.z);
         subRb.transform.localEulerAngles = gameObject.transform.localEulerAngles;
         //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x * 0, gameObject.transform.eulerAngles.y * 0, gameObject.transform.eulerAngles.z * 0);
 
-        mainCam.SetActive(true);
-        turretCam.SetActive(false);
+        //mainCam.SetActive(true);
+        //turretCam.SetActive(false);
         #endregion
 
         #region Player Movement
@@ -187,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region Player Scale State (Standard or Mini)
+        /*
         //This changes the scale value depending on the state
         if (playerState == PlayerState.Standard)
         {
@@ -205,6 +209,7 @@ public class PlayerMovement : MonoBehaviour
             subRb.gameObject.SetActive(false);
             gravityValue = -9.81f;
         }
+        */
         #endregion
 
         #region Raycast Actions
@@ -298,7 +303,9 @@ public class PlayerMovement : MonoBehaviour
     void BallMovement() //Function for Ball State
     {
         #region Components
+        /*
         //This sets all of the correct components for the player in order for the ball movement to work 
+        //gameObject.AddComponent<BallRicochet>();
         gameObject.AddComponent<Rigidbody>();
         gameObject.GetComponent<SphereCollider>().enabled = true;
         gameObject.GetComponent<CharacterController>().enabled = false;
@@ -315,6 +322,7 @@ public class PlayerMovement : MonoBehaviour
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.mass = 1.3f;
         rb.angularDrag = 1.5f;
+        */
         ballVelocity = rb.velocity.magnitude;
         #endregion
 
@@ -325,7 +333,6 @@ public class PlayerMovement : MonoBehaviour
         move.y = 0f;
         rb.AddForce(move * playerSpeed);
         #endregion
-
 
     }
 
