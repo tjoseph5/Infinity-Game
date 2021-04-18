@@ -74,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
         playerMesh = gameObject.GetComponent<MeshFilter>();
         subRb = gameObject.transform.GetChild(2).gameObject;
         rb = subRb.GetComponent<Rigidbody>();
+
+        if(playerState == PlayerState.Standard)
+        {
+            subRb.SetActive(true);
+        }
     }
 
     void Update()
@@ -115,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    #region Movement Mechanics
     void StandardMovement() //Function for Standard State
     {
         #region Compentents
@@ -131,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
         subRb.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.3f, gameObject.transform.position.z);
         subRb.transform.localEulerAngles = gameObject.transform.localEulerAngles;
+        subRb.transform.localScale = gameObject.transform.localScale;
         //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x * 0, gameObject.transform.eulerAngles.y * 0, gameObject.transform.eulerAngles.z * 0);
 
         //mainCam.SetActive(true);
@@ -299,7 +306,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
     void BallMovement() //Function for Ball State
     {
         #region Components
@@ -336,6 +342,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    #endregion
+
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Spring")
@@ -350,6 +358,136 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    #region State Trigger Events
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "State Trigger")
+        {
+            Debug.Log("I'm in");
+            if (interactControl.action.triggered)
+            {
+                switch (other.GetComponent<StateChanger>().playerStateCollider)
+                {
+                    case StateChanger.PlayerStateCollider.Standard:
+                        if (playerState != PlayerState.Standard)
+                        {
+                            playerState = PlayerState.Standard;
+                            PlayerStandardComponents();
+                        }
+                        else
+                        {
+                            Debug.Log("Player is already in the following State: " + playerState);
+                        }
+                        break;
+
+                    case StateChanger.PlayerStateCollider.Mini:
+                        if (playerState != PlayerState.Mini)
+                        {
+                            playerState = PlayerState.Mini;
+                            PlayerMiniComponents();
+                        }
+                        else
+                        {
+                            Debug.Log("Player is already in the following State: " + playerState);
+                        }
+                        break;
+
+                    case StateChanger.PlayerStateCollider.Ball:
+                        if (playerState != PlayerState.Ball)
+                        {
+                            playerState = PlayerState.Ball;
+                            PlayerBallComponents();
+                        }
+                        else
+                        {
+                            Debug.Log("Player is already in the following State: " + playerState);
+                        }
+                        break;
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region Components
+    void PlayerStandardComponents()
+    {
+        #region Compentents
+        //This sets all of the correct components for the player in order for the standard movement to work
+        Destroy(gameObject.GetComponent<BallRicochet>());
+        Destroy(gameObject.GetComponent<Rigidbody>());
+        gameObject.GetComponent<CharacterController>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        gameObject.GetComponent<SphereCollider>().enabled = false;
+        playerMesh.sharedMesh = playerMeshes[0];
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+
+        mainCam.SetActive(true);
+        turretCam.SetActive(false);
+        #endregion
+
+        #region Player Values
+        transform.localScale = new Vector3(1, 1, 1);
+        jumpHeight = 3.3f;
+        springHeight = 5;
+        subRb.gameObject.SetActive(true);
+        gravityValue = -18.27f;
+        #endregion
+    }
+
+    void PlayerMiniComponents()
+    {
+        #region Compentents
+        //This sets all of the correct components for the player in order for the standard movement to work
+        Destroy(gameObject.GetComponent<BallRicochet>());
+        Destroy(gameObject.GetComponent<Rigidbody>());
+        gameObject.GetComponent<CharacterController>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        gameObject.GetComponent<SphereCollider>().enabled = false;
+        playerMesh.sharedMesh = playerMeshes[0];
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+
+        mainCam.SetActive(true);
+        turretCam.SetActive(false);
+        #endregion
+
+        #region Player Values
+        transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        jumpHeight = 1.5f;
+        springHeight = 6.7f;
+        subRb.gameObject.SetActive(false);
+        gravityValue = -9.81f;
+        #endregion
+    }
+
+    void PlayerBallComponents()
+    {
+        #region Components
+        //This sets all of the correct components for the player in order for the ball movement to work 
+        gameObject.AddComponent<BallRicochet>();
+        gameObject.AddComponent<Rigidbody>();
+        gameObject.GetComponent<SphereCollider>().enabled = true;
+        gameObject.GetComponent<CharacterController>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        playerMesh.sharedMesh = playerMeshes[1];
+        transform.GetChild(0).gameObject.SetActive(false);
+        subRb.gameObject.SetActive(false);
+        rb = gameObject.GetComponent<Rigidbody>();
+        transform.localScale = new Vector3(1, 1, 1);
+        springHeight = 100;
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+
+        //Rigidbody Values
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rb.mass = 1.3f;
+        rb.angularDrag = 1.5f;
+        gameObject.GetComponent<BallRicochet>().speedStrengh = 3;
+        #endregion
+    }
+    #endregion
 
     #region Input Enable / Disable stuff
     private void OnEnable()

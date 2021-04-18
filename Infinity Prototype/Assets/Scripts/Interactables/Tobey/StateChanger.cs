@@ -8,6 +8,8 @@ public class StateChanger : MonoBehaviour
     public enum PlayerStateCollider { Standard, Mini, Ball};
     public PlayerStateCollider playerStateCollider = PlayerStateCollider.Standard;
 
+    #region Old Way (Don't mind all of this)
+    /*
     GameObject player;
     PlayerMovement playerMovement;
 
@@ -67,7 +69,7 @@ public class StateChanger : MonoBehaviour
         }
         
     }
-
+    
     void PlayerStandardComponents()
     {
         #region Compentents
@@ -145,7 +147,6 @@ public class StateChanger : MonoBehaviour
         #endregion
     }
 
-
     private void OnEnable()
     {
         interactControl.action.Enable();
@@ -155,4 +156,6 @@ public class StateChanger : MonoBehaviour
     {
         interactControl.action.Disable();
     }
+    */
+    #endregion
 }

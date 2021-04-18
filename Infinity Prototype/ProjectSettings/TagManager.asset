@@ -12,6 +12,7 @@ TagManager:
   - Holdable
   - Spring
   - Ricochet
+  - State Trigger
   layers:
   - Default
   - TransparentFX

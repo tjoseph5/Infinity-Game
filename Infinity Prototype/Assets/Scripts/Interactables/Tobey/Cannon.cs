@@ -95,8 +95,7 @@ public class Cannon : MonoBehaviour
             playerBallVel.canMove = true;
             playerBall.GetComponent<Rigidbody>().velocity = cannonstrength * shotDirection;
             inMyCannon = false;
-            gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle; //Sets the cannon's movement state back to zero
-            playerBallVel.timeManager.DoSlowmotion(); //Triggers a 2 second slowmotion effect from the TimeManager script
+            //gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle; //Sets the cannon's movement state back to zero
         }
 
     }
