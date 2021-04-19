@@ -81,6 +81,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         canGrow = true;
+
+        mainCam.SetActive(true);
+        turretCam.SetActive(false);
     }
 
     void Update()
@@ -253,6 +256,7 @@ public class PlayerMovement : MonoBehaviour
                         playerState = PlayerState.Turret;
                         //The upcoming ugly and long line just positions the rotation of the player to the rotation of the turret's rotation
                         gameObject.transform.eulerAngles = new Vector3(rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.x, rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.y, rayHit.collider.gameObject.transform.GetChild(0).eulerAngles.z);
+                        subRb.gameObject.SetActive(false);
                     }
 
                     //Ronnie part to check if raycast hits the button, to start Button Hit function on button
@@ -292,6 +296,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("back to standard");
             //playerTurrentPointer.transform.eulerAngles = new Vector3(playerTurrentPointer.transform.eulerAngles.x * 0, playerTurrentPointer.transform.eulerAngles.y * 0, playerTurrentPointer.transform.eulerAngles.z * 0);
             playerState = PlayerState.Standard;
+
+            mainCam.SetActive(true);
+            turretCam.SetActive(false);
+            subRb.gameObject.SetActive(true);
         }
 
         #region Unsued Zoom In Function
