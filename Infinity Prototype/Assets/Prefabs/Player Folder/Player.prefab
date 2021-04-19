@@ -242,6 +242,7 @@ MonoBehaviour:
   mainCam: {fileID: 0}
   turretCam: {fileID: 0}
   rayLength: 3
+  playerMesh: {fileID: 0}
   playerMeshes:
   - {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
@@ -251,12 +252,15 @@ MonoBehaviour:
   turretZoomIn: {fileID: -741654089962727520, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
   turretShoot: {fileID: -1086439410647065150, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
   playerSpeed: 8
-  jumpHeight: 1
-  gravityValue: -9.81
+  jumpHeight: 3.3
+  gravityValue: -18.27
   rotationSpeed: 4
+  ballVelocity: 0
   ballVelocityCap: 15
+  rb: {fileID: 0}
+  subRb: {fileID: 0}
   playerState: 0
-  springHeight: 0
+  springHeight: 5
 --- !u!135 &9109665649845897184
 SphereCollider:
   m_ObjectHideFlags: 0

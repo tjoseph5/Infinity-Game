@@ -39,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Player Values
-    [SerializeField] private float playerSpeed = 2.0f; //Player's Movement Speed
-    public float jumpHeight = 1.0f; //Player's Jump Height
-    public float gravityValue = -9.81f; //Player's Gravity
+    public float playerSpeed; //Player's Movement Speed
+    public float jumpHeight; //Player's Jump Height
+    public float gravityValue; //Player's Gravity
     [SerializeField] private float rotationSpeed = 4; //Player Rotation Speed
 
     [HideInInspector]public float ballVelocity;
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     #region Interactable Values
 
     public float springHeight;
-
+    bool canGrow;
     #endregion
 
     void Awake()
@@ -79,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         {
             subRb.SetActive(true);
         }
+
+        canGrow = true;
     }
 
     void Update()
@@ -217,6 +219,13 @@ public class PlayerMovement : MonoBehaviour
             gravityValue = -9.81f;
         }
         */
+        
+        if(transform.localScale == Vector3.one && playerState == PlayerState.Mini && canGrow)
+        {
+            playerState = PlayerState.Standard;
+            PlayerStandardComponents();
+            canGrow = false;
+        }
         #endregion
 
         #region Raycast Actions
@@ -374,6 +383,7 @@ public class PlayerMovement : MonoBehaviour
                         {
                             playerState = PlayerState.Standard;
                             PlayerStandardComponents();
+                            gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
                         }
                         else
                         {
@@ -386,6 +396,7 @@ public class PlayerMovement : MonoBehaviour
                         {
                             playerState = PlayerState.Mini;
                             PlayerMiniComponents();
+                            gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
                         }
                         else
                         {
@@ -398,6 +409,7 @@ public class PlayerMovement : MonoBehaviour
                         {
                             playerState = PlayerState.Ball;
                             PlayerBallComponents();
+                            gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
                         }
                         else
                         {
@@ -422,7 +434,8 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().enabled = false;
         playerMesh.sharedMesh = playerMeshes[0];
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+        //gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+        canGrow = false;
 
         mainCam.SetActive(true);
         turretCam.SetActive(false);
@@ -434,6 +447,7 @@ public class PlayerMovement : MonoBehaviour
         springHeight = 5;
         subRb.gameObject.SetActive(true);
         gravityValue = -18.27f;
+        playerSpeed = 8;
         #endregion
     }
 
@@ -448,7 +462,8 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().enabled = false;
         playerMesh.sharedMesh = playerMeshes[0];
         transform.GetChild(0).gameObject.SetActive(true);
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+        //transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+        canGrow = true;
 
         mainCam.SetActive(true);
         turretCam.SetActive(false);
@@ -460,6 +475,7 @@ public class PlayerMovement : MonoBehaviour
         springHeight = 6.7f;
         subRb.gameObject.SetActive(false);
         gravityValue = -9.81f;
+        playerSpeed = 4;
         #endregion
     }
 
@@ -478,7 +494,9 @@ public class PlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         transform.localScale = new Vector3(1, 1, 1);
         springHeight = 100;
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+        playerSpeed = 8;
+        //transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
+        canGrow = false;
 
         //Rigidbody Values
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
