@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Cannon : MonoBehaviour
 {
     private Transform shotPos; //Player's set position when entering a cannon
     GameObject playerBall; //the Player Ball
-    DragShoot playerBallVel; //The velocity of the player ball
+    PlayerMovement playerBallVel; //The velocity of the player ball
     bool inMyCannon; //Specifies if the player has entered an indivisual cannon rather than any regular cannon (this fixes a glitch that causes the player to only launch from the latest cannon direction)
     CannonMovement cannonMovement; //The CannonMovement script that allows some cannons to move depending on their state
 
@@ -15,12 +16,14 @@ public class Cannon : MonoBehaviour
 
     public float movementSpeed; //the speed of the Cannon's movement
 
+    [SerializeField] InputActionReference interactControl;
+
     void Start()
     {
         inMyCannon = false;
         shotPos = transform.GetChild(0).transform; //Gets the shot position first
-        playerBall = GameObject.FindGameObjectWithTag("Player");
-        playerBallVel = playerBall.GetComponent<DragShoot>();
+        playerBall = GameObject.Find("Player");
+        playerBallVel = playerBall.GetComponent<PlayerMovement>();
         cannonMovement = gameObject.GetComponent<CannonMovement>();
     }
 
@@ -32,28 +35,19 @@ public class Cannon : MonoBehaviour
 
         if (inMyCannon) //This if statement helps specify if the cannon has entered a specific cannon
         {
-
-            
-
-            if (Input.touchCount > 0)
+            if (interactControl.action.triggered)
             {
-                if (playerBallVel.touch.phase == TouchPhase.Began)
-                {
-                    CannonFire(); //Launches cannon
-                }
+                CannonFire(); //Launches cannon
             }
 
             //Keeps the ball in the position of the shot position
             switch (playerBallVel.playerInCannon)
             {
                 case true:
-
-                    if (playerBallVel.isShoot == true)
+                    if (playerBallVel.playerState == PlayerMovement.PlayerState.Ball)
                     {
                         playerBall.transform.position = shotPos.transform.position;
                         playerBall.transform.rotation = shotPos.transform.rotation;
-                        playerBallVel.canMove = false;
-                        playerBallVel.waitForMove = 3;
                     }
                     break;
 
@@ -69,7 +63,7 @@ public class Cannon : MonoBehaviour
     //Dictates the following events of the player ball entering a cannon
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" && playerBallVel.waitForMove == 0)
+        if(other.gameObject.name == "Player" && playerBallVel.playerState == PlayerMovement.PlayerState.Ball)
         {
             playerBallVel.playerInCannon = true;
             inMyCannon = true;
@@ -89,14 +83,23 @@ public class Cannon : MonoBehaviour
 
     void CannonFire() //A function that launches the ball
     {
-        if (playerBallVel.isShoot && playerBallVel.playerInCannon)
+        if (playerBallVel.playerInCannon)
         {
             playerBallVel.playerInCannon = false; //Stops ball from being frozen in one position
-            playerBallVel.canMove = true;
             playerBall.GetComponent<Rigidbody>().velocity = cannonstrength * shotDirection;
             inMyCannon = false;
             //gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle; //Sets the cannon's movement state back to zero
         }
 
+    }
+
+    private void OnEnable()
+    {
+        interactControl.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        interactControl.action.Disable();
     }
 }

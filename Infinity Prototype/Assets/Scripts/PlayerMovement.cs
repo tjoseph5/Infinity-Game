@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     #region Controller Input Actions
     [SerializeField] private InputActionReference movementControl; //The Input Action that moves the player
     [SerializeField] private InputActionReference jumpControl; //The Input Action that makes the player jump
-    [SerializeField] InputActionReference interactControl; //The Input Action that makes the player interact with objects
+    [SerializeField] private InputActionReference interactControl; //The Input Action that makes the player interact with objects
     [SerializeField] private InputActionReference turretZoomIn; //The Input Action that lets the player zoom in in Turret State (unused)
     [SerializeField] private InputActionReference turretShoot; //The Input Action that lets the player shoot during Turret State
     #endregion
@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
     public float ballVelocityCap;
     [HideInInspector]public Rigidbody rb;
     [HideInInspector]public GameObject subRb;
+    [HideInInspector] public bool grabbing = false; //Ron - bool for determining whether the player is grabbing
+    public GameObject grabPos; //Ron - this is the position of the grabbed object that is being held
     #endregion
 
     #region Player States
@@ -60,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float springHeight;
     bool canGrow;
+    [HideInInspector] public bool playerInCannon;
+    [HideInInspector] public GameObject grabbedObj; //Ron - this is for keeping access to the game object so that it can be moved
     #endregion
 
     void Awake()
@@ -74,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
         playerMesh = gameObject.GetComponent<MeshFilter>();
         subRb = gameObject.transform.GetChild(2).gameObject;
         rb = subRb.GetComponent<Rigidbody>();
+        playerInCannon = false;
+        grabPos = gameObject.transform.GetChild(3).gameObject;
 
         if(playerState == PlayerState.Standard)
         {
@@ -110,6 +116,13 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.Mini: //This state scales the player to a small size of 0.3. This uses the same function as Standard State.
                 StandardMovement();
                 break;
+
+                //This moves the grabbed object to the position in front of the player.
+                if (grabbing)
+                {
+                    grabbedObj.transform.position = grabPos.transform.position;
+                    grabbedObj.transform.rotation = grabPos.transform.rotation;
+                }
         }
         #endregion
     }
@@ -264,8 +277,34 @@ public class PlayerMovement : MonoBehaviour
                     {
                         rayHit.collider.gameObject.GetComponent<Pressable_Button>().ButtonPress();
                     }
+
+                    //Ronnie Part to grab objects
+                    if (rayHit.collider.tag == "Holdable")
+                    {
+                        if (!grabbing)
+                        {
+                            grabbedObj = rayHit.collider.gameObject;
+                            grabbing = true;
+                            //Destroy(rayHit.collider.gameObject);
+                        }
+                        else
+                        {
+                            //Instantiate(grabbedObj, grabPos.transform.position, grabPos.transform.rotation);
+                            grabbing = false;
+                            grabbedObj = null;
+                            //Destroy(grabbedObj);
+                        }
+                    }
                 }
             }
+        }
+        #endregion
+
+        #region Grabbing Mechanic
+        if (grabbing)
+        {
+            grabbedObj.transform.position = grabPos.transform.position;
+            grabbedObj.transform.rotation = grabPos.transform.rotation;
         }
         #endregion
     }
@@ -350,11 +389,14 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region Movement
-        Vector2 movement = movementControl.action.ReadValue<Vector2>();
-        Vector3 move = new Vector3(movement.x, 0, movement.y);
-        move = cameraMainTransform.forward * move.z + cameraMainTransform.right * move.x;
-        move.y = 0f;
-        rb.AddForce(move * playerSpeed);
+        if (!playerInCannon)
+        {
+            Vector2 movement = movementControl.action.ReadValue<Vector2>();
+            Vector3 move = new Vector3(movement.x, 0, movement.y);
+            move = cameraMainTransform.forward * move.z + cameraMainTransform.right * move.x;
+            move.y = 0f;
+            rb.AddForce(move * playerSpeed);
+        }
         #endregion
 
     }
