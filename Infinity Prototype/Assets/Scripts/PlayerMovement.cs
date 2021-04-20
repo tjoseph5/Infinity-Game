@@ -81,10 +81,13 @@ public class PlayerMovement : MonoBehaviour
         playerInCannon = false;
         grabPos = gameObject.transform.GetChild(3).gameObject;
 
+        /*
         if(playerState == PlayerState.Standard)
         {
             subRb.SetActive(true);
         }
+        */
+        subRb.SetActive(false);
 
         canGrow = true;
 

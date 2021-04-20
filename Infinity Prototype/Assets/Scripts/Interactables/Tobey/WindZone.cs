@@ -43,7 +43,10 @@ public class WindZone : MonoBehaviour
         {
             foreach(Rigidbody rigid in WindZoneRbs)
             {
-                rigid.AddForce(windDirection * windStrength);
+                if(rigid.gameObject.transform.localScale.x < 3 && rigid.gameObject.transform.localScale.y < 3  && rigid.gameObject.transform.localScale.z < 3)
+                {
+                    rigid.AddForce(windDirection * windStrength);
+                }
             }
         }
     }
