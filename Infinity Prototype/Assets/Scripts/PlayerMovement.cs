@@ -116,13 +116,6 @@ public class PlayerMovement : MonoBehaviour
             case PlayerState.Mini: //This state scales the player to a small size of 0.3. This uses the same function as Standard State.
                 StandardMovement();
                 break;
-
-                //This moves the grabbed object to the position in front of the player.
-                if (grabbing)
-                {
-                    grabbedObj.transform.position = grabPos.transform.position;
-                    grabbedObj.transform.rotation = grabPos.transform.rotation;
-                }
         }
         #endregion
     }
