@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform cameraMainTransform; //The Transform of the main Camera
     public GameObject mainCam; //The main FreeLook camera (used for every player state, except Turret)
     public GameObject turretCam; //The character specifically for Turret state
+    public GameObject tubeCam; //Camera that is specific to when the player is inside a tube
     #endregion
 
     #region Raycast Setup
