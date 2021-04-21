@@ -29,6 +29,8 @@ public class Pressable_Button : MonoBehaviour
             foreach (BoxCollider platform in platforms)
             {
                 platform.enabled = false;
+                platform.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                platform.gameObject.transform.GetChild(1).gameObject.SetActive(true);
             }
         }
         else if (!lightOn)
@@ -41,6 +43,8 @@ public class Pressable_Button : MonoBehaviour
             foreach (BoxCollider platform in platforms)
             {
                 platform.enabled = true;
+                platform.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                platform.gameObject.transform.GetChild(1).gameObject.SetActive(false);
             }
         }
     }
