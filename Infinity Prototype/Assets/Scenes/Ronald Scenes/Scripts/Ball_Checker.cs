@@ -22,6 +22,7 @@ public class Ball_Checker : MonoBehaviour
                 {
                     //Ball_Spawn = GameObject.Find("Ball_Red_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[0];
+                    gameObject.name = "Ball_Red";
                 }
                 break;
 
@@ -30,6 +31,7 @@ public class Ball_Checker : MonoBehaviour
                 {
                     //Ball_Spawn = GameObject.Find("Ball_Green_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[1];
+                    gameObject.name = "Ball_Green";
                 }
                 break;
 
@@ -38,6 +40,7 @@ public class Ball_Checker : MonoBehaviour
                 {
                     //Ball_Spawn = GameObject.Find("Ball_Yellow_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[2];
+                    gameObject.name = "Ball_Yellow";
                 }
                 break;
 
@@ -46,6 +49,7 @@ public class Ball_Checker : MonoBehaviour
                 {
                     //Ball_Spawn = GameObject.Find("Ball_Blue_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[3];
+                    gameObject.name = "Ball_Blue";
                 }
                 break;
 
@@ -54,6 +58,7 @@ public class Ball_Checker : MonoBehaviour
                 {
                     //Ball_Spawn = GameObject.Find("Ball_Purple_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[4];
+                    gameObject.name = "Ball_Purple";
                 }
                 break;
         }

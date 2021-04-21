@@ -46,9 +46,9 @@ public class Collectable_Script : MonoBehaviour
                     other.GetComponent<Rigidbody>().mass += 0.1f;
                 }
 
-                if(other.GetComponent<Rigidbody>().drag < 2)
+                if(other.GetComponent<Rigidbody>().angularDrag < 1)
                 {
-                    other.GetComponent<Rigidbody>().drag += 0.1f;
+                    other.GetComponent<Rigidbody>().angularDrag += 0.05f;
                 }
 
                 Destroy(gameObject);

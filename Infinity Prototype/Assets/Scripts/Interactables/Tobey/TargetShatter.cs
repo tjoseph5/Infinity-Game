@@ -17,7 +17,9 @@ public class TargetShatter : MonoBehaviour
 
     void Update()
     {
-
+        //destroyedVersion.transform.position = gameObject.transform.position;
+        //destroyedVersion.transform.rotation = gameObject.transform.rotation;
+        destroyedVersion.transform.localScale = gameObject.transform.localScale;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -38,7 +40,7 @@ public class TargetShatter : MonoBehaviour
 
     void ShatterSpawn()
     {
-        Instantiate(destroyedVersion, gameObject.transform.localPosition, gameObject.transform.localRotation, GameObject.Find("End Position").transform);
+        Instantiate(destroyedVersion, gameObject.transform.position, gameObject.transform.rotation, GameObject.Find("End Position").transform);
         StartCoroutine(DestroyBuildDestroy());
     }
 
