@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Cannon : MonoBehaviour
 {
@@ -15,8 +14,6 @@ public class Cannon : MonoBehaviour
     Vector3 shotDirection = -Vector3.right; //the Direction of the launch/cannon
 
     public float movementSpeed; //the speed of the Cannon's movement
-
-    [SerializeField] InputActionReference interactControl;
 
     void Start()
     {
@@ -35,7 +32,7 @@ public class Cannon : MonoBehaviour
 
         if (inMyCannon) //This if statement helps specify if the cannon has entered a specific cannon
         {
-            if (interactControl.action.triggered)
+            if (playerBallVel.interactControl.action.triggered)
             {
                 CannonFire(); //Launches cannon
             }
@@ -91,15 +88,5 @@ public class Cannon : MonoBehaviour
             //gameObject.GetComponent<CannonMovement>().direction = CannonMovement.DirectionalMovement.idle; //Sets the cannon's movement state back to zero
         }
 
-    }
-
-    private void OnEnable()
-    {
-        interactControl.action.Enable();
-    }
-
-    private void OnDisable()
-    {
-        interactControl.action.Disable();
     }
 }

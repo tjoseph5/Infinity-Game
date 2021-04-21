@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GrabCollider : MonoBehaviour
 {
 
     GameObject player;
-    [SerializeField] InputActionReference interactControl;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +19,7 @@ public class GrabCollider : MonoBehaviour
         if (other.tag == "Holdable")
         {
             Debug.Log("can pick up");
-            if (interactControl.action.triggered)
+            if (player.GetComponent<PlayerMovement>().interactControl.action.triggered)
             {
                 if(player.GetComponent<PlayerMovement>().playerState == PlayerMovement.PlayerState.Standard)
                 {
@@ -48,15 +46,5 @@ public class GrabCollider : MonoBehaviour
 
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        interactControl.action.Enable();
-    }
-
-    private void OnDisable()
-    {
-        interactControl.action.Disable();
     }
 }

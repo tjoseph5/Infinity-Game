@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     #region Controller Input Actions
     [SerializeField] private InputActionReference movementControl; //The Input Action that moves the player
     [SerializeField] private InputActionReference jumpControl; //The Input Action that makes the player jump
-    [SerializeField] private InputActionReference interactControl; //The Input Action that makes the player interact with objects
+    public InputActionReference interactControl; //The Input Action that makes the player interact with objects
     [SerializeField] private InputActionReference turretZoomIn; //The Input Action that lets the player zoom in in Turret State (unused)
     [SerializeField] private InputActionReference turretShoot; //The Input Action that lets the player shoot during Turret State
     #endregion
