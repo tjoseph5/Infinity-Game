@@ -57,7 +57,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a27bcf274ea2a48ba58febb69e66a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactControl: {fileID: 3860830824011534203, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
 --- !u!1 &2144612265895769844
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
   turretCam: {fileID: 0}
+  tubeCam: {fileID: 0}
   rayLength: 3
   playerMesh: {fileID: 0}
   playerMeshes:
