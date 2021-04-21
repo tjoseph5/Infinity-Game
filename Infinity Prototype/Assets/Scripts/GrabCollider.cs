@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrabCollider : MonoBehaviour
 {
-
+    /*
     GameObject player;
 
     // Start is called before the first frame update
@@ -47,4 +47,5 @@ public class GrabCollider : MonoBehaviour
             }
         }
     }
+    */
 }

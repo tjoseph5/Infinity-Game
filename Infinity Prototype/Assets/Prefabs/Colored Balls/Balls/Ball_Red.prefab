@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2287556946448100118}
   - component: {fileID: 3805586690592406884}
   - component: {fileID: 170540853920804004}
+  - component: {fileID: 759990723830618265}
   m_Layer: 0
   m_Name: Ball_Red
   m_TagString: Holdable
@@ -133,3 +134,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &759990723830618265
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287556946448100113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.56
+  m_Center: {x: 0, y: 0, z: 0}
