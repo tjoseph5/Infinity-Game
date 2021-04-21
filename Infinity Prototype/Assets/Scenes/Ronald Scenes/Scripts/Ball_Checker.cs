@@ -15,16 +15,12 @@ public class Ball_Checker : MonoBehaviour
 
     void Start()
     {
-
-    }
-
-    private void Update()
-    {
-        switch (ballColor)
+        switch (ballColor) //Tobey - I moved this from Update to Start in order to save memory
         {
             case BallColor.Red:
                 if(tag == "Holdable")
                 {
+                    //Ball_Spawn = GameObject.Find("Ball_Red_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[0];
                 }
                 break;
@@ -32,6 +28,7 @@ public class Ball_Checker : MonoBehaviour
             case BallColor.Green:
                 if (tag == "Holdable")
                 {
+                    //Ball_Spawn = GameObject.Find("Ball_Green_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[1];
                 }
                 break;
@@ -39,6 +36,7 @@ public class Ball_Checker : MonoBehaviour
             case BallColor.Yellow:
                 if (tag == "Holdable")
                 {
+                    //Ball_Spawn = GameObject.Find("Ball_Yellow_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[2];
                 }
                 break;
@@ -46,6 +44,7 @@ public class Ball_Checker : MonoBehaviour
             case BallColor.Blue:
                 if (tag == "Holdable")
                 {
+                    //Ball_Spawn = GameObject.Find("Ball_Blue_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[3];
                 }
                 break;
@@ -53,10 +52,16 @@ public class Ball_Checker : MonoBehaviour
             case BallColor.Purple:
                 if (tag == "Holdable")
                 {
+                    //Ball_Spawn = GameObject.Find("Ball_Purple_Spawn").transform;
                     gameObject.GetComponent<MeshRenderer>().material = materials[4];
                 }
                 break;
         }
+    }
+
+    private void Update()
+    {
+
     }
 
 
@@ -64,24 +69,27 @@ public class Ball_Checker : MonoBehaviour
     {
         //Using OnTriggerEnter function to check when ball enters trigger at bottom of pipe
         //CompareTag to check if the ball is in the correct tube
-        if (other.GetComponent<Ball_Checker>().ballColor == this.ballColor)
+        if (other.GetComponent<Ball_Checker>()) // Tobey - This checks if the object even has the correct component first
         {
-            //Destroy ball if correct
-            Debug.Log("Correct Hole");
-            if(tag == "Holdable")
+            if (other.gameObject.GetComponent<Ball_Checker>().ballColor == this.ballColor && other.tag != "Holdable")
             {
-                Destroy(gameObject);
+                //Destroy ball if correct
+                Debug.Log("Correct Hole");
+                if (tag == "Holdable")
+                {
+                    Destroy(gameObject);
+                }
             }
-        }
-        else
-        {
-            //if the pipe is incorrect the ball respawns
-            Debug.Log("Incorrect Hole");
-            if (tag == "Holdable")
+            else
             {
-                Instantiate(this, Ball_Spawn.position, Ball_Spawn.rotation);
-                Destroy(gameObject);
+                //if the pipe is incorrect the ball respawns
+                Debug.Log("Incorrect Hole");
+                if (tag == "Holdable")
+                {
+                    Instantiate(this, Ball_Spawn.position, Ball_Spawn.rotation);
+                    Destroy(gameObject);
+                }
             }
-        }
+        } 
     }
 }

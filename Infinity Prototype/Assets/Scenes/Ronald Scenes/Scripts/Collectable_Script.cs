@@ -65,6 +65,7 @@ public class Collectable_Script : MonoBehaviour
         player.GetComponent<PlayerMovement>().jumpHeight += 0.257142857f;
         player.GetComponent<PlayerMovement>().gravityValue -= 1.20857143f;
         player.GetComponent<PlayerMovement>().springHeight -= 0.242857143f;
+        player.GetComponent<PlayerMovement>().enemyBounce -= 0.2f;
         player.GetComponent<PlayerMovement>().playerSpeed += 0.571428571f;
     }
     

@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]public GameObject subRb;
     [HideInInspector] public bool grabbing = false; //Ron - bool for determining whether the player is grabbing
     public GameObject grabPos; //Ron - this is the position of the grabbed object that is being held
+    GameObject grabCollider;
     #endregion
 
     #region Player States
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     #region Interactable Values
 
     public float springHeight;
+    public float enemyBounce;
     bool canGrow;
     [HideInInspector] public bool playerInCannon;
     [HideInInspector] public GameObject grabbedObj; //Ron - this is for keeping access to the game object so that it can be moved
@@ -80,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         rb = subRb.GetComponent<Rigidbody>();
         playerInCannon = false;
         grabPos = gameObject.transform.GetChild(3).gameObject;
+        grabCollider = gameObject.transform.GetChild(4).gameObject;
 
         /*
         if(playerState == PlayerState.Standard)
@@ -152,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
         subRb.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.3f, gameObject.transform.position.z);
         subRb.transform.localEulerAngles = gameObject.transform.localEulerAngles;
         subRb.transform.localScale = gameObject.transform.localScale;
+        grabCollider.transform.localScale = gameObject.transform.localScale;
         //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x * 0, gameObject.transform.eulerAngles.y * 0, gameObject.transform.eulerAngles.z * 0);
 
         //mainCam.SetActive(true);
@@ -275,6 +279,7 @@ public class PlayerMovement : MonoBehaviour
                     }
 
                     //Ronnie Part to grab objects
+                    /*
                     if (rayHit.collider.tag == "Holdable")
                     {
                         if (!grabbing)
@@ -291,6 +296,7 @@ public class PlayerMovement : MonoBehaviour
                             //Destroy(grabbedObj);
                         }
                     }
+                    */
                 }
             }
         }
@@ -301,6 +307,22 @@ public class PlayerMovement : MonoBehaviour
         {
             grabbedObj.transform.position = grabPos.transform.position;
             grabbedObj.transform.rotation = grabPos.transform.rotation;
+        }
+
+        if(grabbedObj != null && grabbing && interactControl.action.triggered)
+        {
+            grabbing = false;
+            grabbedObj = null;
+        }
+
+        if (grabbedObj != null)
+        {
+            if (grabbedObj.GetComponent<Rigidbody>())
+            {
+                Rigidbody grabRb = grabbedObj.GetComponent<Rigidbody>();
+
+                grabRb.velocity = new Vector3(0, 0, 0);
+            }
         }
         #endregion
     }
@@ -412,6 +434,18 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity += Vector3.up * springHeight;
             }
         }
+
+        if(other.name == "Enemy_Weak_Point")
+        {
+            if (playerState == PlayerState.Standard || playerState == PlayerState.Mini)
+            {
+                playerVelocity.y += Mathf.Sqrt(enemyBounce * -3.0f * gravityValue);
+            }
+            else if (playerState == PlayerState.Ball)
+            {
+                rb.velocity += Vector3.up * enemyBounce;
+            }
+        }
     }
 
     #region State Trigger Events
@@ -480,6 +514,7 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().enabled = false;
         playerMesh.sharedMesh = playerMeshes[0];
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        grabCollider.SetActive(true);
         //gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
         canGrow = false;
 
@@ -491,6 +526,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         jumpHeight = 3.3f;
         springHeight = 5;
+        enemyBounce = 5;
         subRb.gameObject.SetActive(true);
         gravityValue = -18.27f;
         playerSpeed = 8;
@@ -519,9 +555,11 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         jumpHeight = 1.5f;
         springHeight = 6.7f;
+        enemyBounce = 6.4f;
         subRb.gameObject.SetActive(false);
         gravityValue = -9.81f;
         playerSpeed = 4;
+        grabCollider.SetActive(true);
         #endregion
     }
 
@@ -541,6 +579,8 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         springHeight = 100;
         playerSpeed = 8;
+        grabCollider.SetActive(false);
+        
         //transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
         canGrow = false;
 

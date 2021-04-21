@@ -5,21 +5,25 @@ using UnityEngine;
 public class Pressure_Pad : MonoBehaviour
 {
     // This script just checks if the pressure pad is pressed down, by seeing if it entered the trigger
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if(other.name == "Player")
+        if (other.collider.gameObject.GetComponent<Rigidbody>())
         {
-            Debug.Log("Pressure Pad Pushed Down");
-            other.gameObject.GetComponent<PlayerMovement>().subRb.SetActive(true);
+            if (other.collider.tag == "Holdable" || other.collider.name == "subRb")
+            {
+                Debug.Log("Pressure Pad Pushed Down");
+            }
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision other)
     {
-        if (other.name == "Player")
+        if (other.collider.GetComponent<Rigidbody>())
         {
-            Debug.Log("Pressure Pad Back Up");
-            other.gameObject.GetComponent<PlayerMovement>().subRb.SetActive(false);
+            if (other.collider.tag == "Holdable" || other.collider.name == "subRb")
+            {
+                Debug.Log("Pressure Pad Back Up");
+            }
         }
     }
 }
