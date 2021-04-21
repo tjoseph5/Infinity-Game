@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         rb = subRb.GetComponent<Rigidbody>();
         playerInCannon = false;
         grabPos = gameObject.transform.GetChild(3).gameObject;
-        grabCollider = gameObject.transform.GetChild(4).gameObject;
+        //grabCollider = gameObject.transform.GetChild(4).gameObject;
 
         /*
         if(playerState == PlayerState.Standard)
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         subRb.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 0.3f, gameObject.transform.position.z);
         subRb.transform.localEulerAngles = gameObject.transform.localEulerAngles;
         subRb.transform.localScale = gameObject.transform.localScale;
-        grabCollider.transform.localScale = gameObject.transform.localScale;
+        //grabCollider.transform.localScale = gameObject.transform.localScale;
         //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x * 0, gameObject.transform.eulerAngles.y * 0, gameObject.transform.eulerAngles.z * 0);
 
         //mainCam.SetActive(true);
@@ -280,14 +280,32 @@ public class PlayerMovement : MonoBehaviour
                     }
 
                     //Ronnie Part to grab objects
-                    /*
+                    
                     if (rayHit.collider.tag == "Holdable")
                     {
                         if (!grabbing)
                         {
-                            grabbedObj = rayHit.collider.gameObject;
-                            grabbing = true;
-                            //Destroy(rayHit.collider.gameObject);
+                            if(playerState == PlayerState.Standard)
+                            {
+                                grabbedObj = rayHit.collider.gameObject;
+                                grabbing = true;
+                                Debug.Log("object grabbed");
+                                //Destroy(rayHit.collider.gameObject);
+                            }
+
+                            if (playerState == PlayerState.Mini)
+                            {
+                                if (transform.localScale.x >= rayHit.collider.gameObject.transform.localScale.x && transform.localScale.y >= rayHit.collider.gameObject.transform.localScale.y && transform.localScale.z >= rayHit.collider.gameObject.transform.localScale.z || rayHit.collider.gameObject.name == "Key")
+                                {
+                                    if (!grabbing)
+                                    {
+                                        grabbedObj = rayHit.collider.gameObject;
+                                        grabbing = true;
+                                        Debug.Log("object grabbed");
+                                        //Destroy(rayHit.collider.gameObject);
+                                    }
+                                }
+                            }
                         }
                         else
                         {
@@ -297,7 +315,7 @@ public class PlayerMovement : MonoBehaviour
                             //Destroy(grabbedObj);
                         }
                     }
-                    */
+                    
                 }
             }
         }
@@ -309,13 +327,14 @@ public class PlayerMovement : MonoBehaviour
             grabbedObj.transform.position = grabPos.transform.position;
             grabbedObj.transform.rotation = grabPos.transform.rotation;
         }
-
+        /*
         if(grabbedObj != null && grabbing && interactControl.action.triggered)
         {
             grabbing = false;
             grabbedObj = null;
+            Debug.Log("dropped object");
         }
-
+        */
         if (grabbedObj != null)
         {
             if (grabbedObj.GetComponent<Rigidbody>())
@@ -515,7 +534,7 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().enabled = false;
         playerMesh.sharedMesh = playerMeshes[0];
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        grabCollider.SetActive(true);
+        //grabCollider.SetActive(true);
         //gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
         canGrow = false;
 
@@ -560,7 +579,7 @@ public class PlayerMovement : MonoBehaviour
         subRb.gameObject.SetActive(false);
         gravityValue = -9.81f;
         playerSpeed = 4;
-        grabCollider.SetActive(true);
+        //grabCollider.SetActive(true);
         #endregion
     }
 
@@ -580,7 +599,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         springHeight = 100;
         playerSpeed = 8;
-        grabCollider.SetActive(false);
+        //grabCollider.SetActive(false);
         
         //transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
         canGrow = false;
