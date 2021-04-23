@@ -45,6 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRotation: {fileID: 5532032071860692570, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
   cameraSpeed: 20
+  maxYRot: 20
+  minYRot: -30
+  maxXRot: 20
+  minXRot: -20
 --- !u!1 &2851597659168683222
 GameObject:
   m_ObjectHideFlags: 0

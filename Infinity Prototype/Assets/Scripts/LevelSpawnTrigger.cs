@@ -21,11 +21,12 @@ public class LevelSpawnTrigger : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            if(player.grabbing && player.grabbedObj != null)
+            if (player.grabbing && player.grabbedObj != null)
             {
                 player.grabbing = false;
                 player.grabbedObj = null;
             }
+
             levelGenerator.SpawnLevelPart();
             rigidbodyManager.ListUpdator();
             Destroy(gameObject);
