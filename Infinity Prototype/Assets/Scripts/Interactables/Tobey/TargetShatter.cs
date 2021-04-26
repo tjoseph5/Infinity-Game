@@ -24,7 +24,7 @@ public class TargetShatter : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject == playerBall)
+        if(collision.gameObject.tag == "Player")
         {
             if(playerBall.GetComponent<PlayerMovement>().playerState == PlayerMovement.PlayerState.Ball)
             {

@@ -605,7 +605,8 @@ public class PlayerMovement : MonoBehaviour
         canGrow = false;
 
         //Rigidbody Values
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        rb.interpolation = RigidbodyInterpolation.Extrapolate;
         rb.mass = 1.3f;
         rb.angularDrag = 1.5f;
         gameObject.GetComponent<BallRicochet>().speedStrengh = 3;
