@@ -19,7 +19,7 @@ public class TargetShatter : MonoBehaviour
     {
         //destroyedVersion.transform.position = gameObject.transform.position;
         //destroyedVersion.transform.rotation = gameObject.transform.rotation;
-        destroyedVersion.transform.localScale = gameObject.transform.localScale;
+        destroyedVersion.transform.gameObject.transform.localScale = gameObject.transform.localScale;
     }
 
     void OnCollisionEnter(Collision collision)

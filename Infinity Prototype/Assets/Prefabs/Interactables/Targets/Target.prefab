@@ -95,7 +95,7 @@ Rigidbody:
   m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
@@ -111,7 +111,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4068373912626513877, guid: 2ee94dcb1dd2ca245b814d2e0cc5f9bb, type: 3}
 --- !u!114 &5902898561443420469

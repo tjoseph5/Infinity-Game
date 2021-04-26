@@ -41,8 +41,11 @@ public class RigidbodyManager : MonoBehaviour
 
         foreach(GameObject rb in holdables)
         {
-            rb.AddComponent<HoldableVelocityCap>();
-            rb.GetComponent<HoldableVelocityCap>().velocityCap = velocityCap;
+            if (!rb.GetComponent<HoldableVelocityCap>())
+            {
+                rb.AddComponent<HoldableVelocityCap>();
+                rb.GetComponent<HoldableVelocityCap>().velocityCap = velocityCap;
+            }
         }
     }
 }
