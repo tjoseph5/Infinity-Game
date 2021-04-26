@@ -34,6 +34,11 @@ public class WindZone : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        WindZoneRbs.RemoveAll(WindZoneRbs => WindZoneRbs == null);
+    }
+
     //This updates will blow any object with a rigid component away in the respected windzone's Z axis
     private void FixedUpdate()
     {

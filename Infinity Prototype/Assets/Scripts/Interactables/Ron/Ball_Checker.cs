@@ -80,7 +80,7 @@ public class Ball_Checker : MonoBehaviour
             {
                 //Destroy ball if correct
                 Debug.Log("Correct Hole");
-                if (tag == "Holdable")
+                if (other.tag != "Holdable")
                 {
                     Destroy(gameObject);
                 }
@@ -89,7 +89,7 @@ public class Ball_Checker : MonoBehaviour
             {
                 //if the pipe is incorrect the ball respawns
                 Debug.Log("Incorrect Hole");
-                if (tag == "Holdable")
+                if (other.tag != "Holdable")
                 {
                     Instantiate(this, Ball_Spawn.position, Ball_Spawn.rotation);
                     Destroy(gameObject);
