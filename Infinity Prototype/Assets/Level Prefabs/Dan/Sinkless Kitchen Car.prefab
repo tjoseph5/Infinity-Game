@@ -8693,11 +8693,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3647690880757079158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.358747, y: 12.199324, z: 130.61429}
+  m_LocalPosition: {x: 2.3000002, y: 0, z: 140}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 902577836537500631}
-  m_RootOrder: 0
+  m_Father: {fileID: 4371167209734741051}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4102237233517559774
 GameObject:
@@ -67010,7 +67010,7 @@ Transform:
   - {fileID: 4102237233832959563}
   - {fileID: 4102237234938939928}
   m_Father: {fileID: 4371167209734741051}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4102237234396233694
 GameObject:
@@ -123302,6 +123302,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4183750202883585913}
+  - {fileID: 4989468837346356253}
   - {fileID: 902577836537500631}
   - {fileID: 4102237234335766933}
   m_Father: {fileID: 0}
@@ -133979,7 +133980,7 @@ Transform:
   m_LocalScale: {x: 7.5, y: 8.82444, z: 4.1107}
   m_Children: []
   m_Father: {fileID: 902577836537500631}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &722491974562682047
 BoxCollider:
@@ -134034,10 +134035,9 @@ Transform:
   m_LocalPosition: {x: 17.658747, y: -12.199324, z: 9.385704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4989468837346356253}
   - {fileID: 259867086104232061}
   m_Father: {fileID: 4371167209734741051}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7604800887566701399
 GameObject:
@@ -134150,6 +134150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7604800887566701396}
   variant: 1
+  doorConditions: {fileID: 0}
 --- !u!54 &7604800887566701396
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134277,6 +134278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7604800887843715226}
   variant: 1
+  doorConditions: {fileID: 0}
 --- !u!54 &7604800887843715226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134404,6 +134406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7604800889388116464}
   variant: 1
+  doorConditions: {fileID: 0}
 --- !u!54 &7604800889388116464
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134531,6 +134534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7604800889444505163}
   variant: 1
+  doorConditions: {fileID: 0}
 --- !u!54 &7604800889444505163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134658,6 +134662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7604800889614924788}
   variant: 1
+  doorConditions: {fileID: 0}
 --- !u!54 &7604800889614924788
 Rigidbody:
   m_ObjectHideFlags: 0
