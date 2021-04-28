@@ -11,6 +11,8 @@ public class WindZone : MonoBehaviour
 
     public float windStrength; //strength of each windzone.
 
+    PlayerMovement player;
+
 
     //This adds any gameObject with a rigidbody component to the WindZoneRbs list on collision
     private void OnTriggerEnter(Collider other)
@@ -20,6 +22,15 @@ public class WindZone : MonoBehaviour
         if(objectRigid != null)
         {
             WindZoneRbs.Add(objectRigid);
+        }
+
+        if(player.grabbedObj != null && player.grabbing)
+        {
+            if(other.gameObject == player.grabbedObj)
+            {
+                player.grabbing = false;
+                player.grabbedObj = null;
+            }
         }
     }
 

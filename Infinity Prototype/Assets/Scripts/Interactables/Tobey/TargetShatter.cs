@@ -7,6 +7,7 @@ public class TargetShatter : MonoBehaviour
 
     GameObject playerBall; //The player Ball
     [SerializeField] GameObject destroyedVersion; //The shattered version
+    public DoorConditions doorConditions;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class TargetShatter : MonoBehaviour
     void ShatterSpawn()
     {
         Instantiate(destroyedVersion, gameObject.transform.position, gameObject.transform.rotation, GameObject.Find("End Position").transform);
+        doorConditions.points += 1;
         StartCoroutine(DestroyBuildDestroy());
     }
 

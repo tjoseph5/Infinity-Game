@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7701213755584209878}
   - component: {fileID: 8596977628770912721}
   - component: {fileID: 8596977628770912723}
+  - component: {fileID: 5385831237517228052}
   m_Layer: 0
   m_Name: Falling Icicle
   m_TagString: Untagged
@@ -814,6 +815,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5866146, y: 7.4868827, z: 1.5512159}
   m_Center: {x: -0.44321156, y: 3.7434413, z: 0.034037434}
+--- !u!114 &5385831237517228052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7701213755584209876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b89f8141701bf4a998a0cd6bdac04b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallHeight: 6
+  rb: {fileID: 8596977628770912721}
 --- !u!1 &8596977628221775691
 GameObject:
   m_ObjectHideFlags: 0

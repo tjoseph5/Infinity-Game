@@ -10,6 +10,7 @@ public class Collectable_Script : MonoBehaviour
     public enum Variant { Normal, Growth};
     public Variant variant = Variant.Normal;
     GameObject player;
+    public DoorConditions doorConditions;
 
 
     void Start()
@@ -27,12 +28,14 @@ public class Collectable_Script : MonoBehaviour
             {
                 Destroy(gameObject);
                 Debug.Log("Add a point");
+                doorConditions.points += 1;
             } 
             else if(variant == Variant.Growth && other.transform.localScale != Vector3.one && player.GetComponent<PlayerMovement>().playerState == PlayerMovement.PlayerState.Mini) //Tobey - Checks if the player is basically in Mini
             {
                 PlayerMathStuff(other.gameObject);
                 Destroy(gameObject);
                 Debug.Log("Add a point");
+                doorConditions.points += 1;
             }
         }
 
@@ -53,6 +56,7 @@ public class Collectable_Script : MonoBehaviour
 
                 Destroy(gameObject);
                 Debug.Log("Add a point");
+                doorConditions.points += 1;
             }
         }
  

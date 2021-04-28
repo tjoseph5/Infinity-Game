@@ -9,27 +9,38 @@ public class LevelSpawnTrigger : MonoBehaviour
     RigidbodyManager rigidbodyManager;
     PlayerMovement player;
 
+    public GameObject door;
+    DoorConditions doorConditions;
+
     private void Awake()
     {
         levelGenerator = GameObject.Find("Level Generator").GetComponent<LevelGeneratorPrototype>();
         rigidbodyManager = GameObject.Find("Rigidbody Manager").GetComponent<RigidbodyManager>();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+        doorConditions = door.GetComponent<DoorConditions>();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (doorConditions.canExit)
         {
-            if (player.grabbing && player.grabbedObj != null)
+            if (other.gameObject.tag == "Player")
             {
-                player.grabbing = false;
-                player.grabbedObj = null;
-            }
+                if (player.grabbing && player.grabbedObj != null)
+                {
+                    player.grabbing = false;
+                    player.grabbedObj = null;
+                }
 
-            levelGenerator.SpawnLevelPart();
-            rigidbodyManager.ListUpdator();
-            Destroy(gameObject);
+                levelGenerator.SpawnLevelPart();
+                rigidbodyManager.ListUpdator();
+                player.playerState = PlayerMovement.PlayerState.Standard;
+                player.PlayerStandardComponents();
+                door.SetActive(false);
+                Destroy(gameObject);
+            }
         }
     }
 }

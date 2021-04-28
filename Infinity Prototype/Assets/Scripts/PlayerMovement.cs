@@ -523,7 +523,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Components
-    void PlayerStandardComponents()
+    public void PlayerStandardComponents()
     {
         #region Compentents
         //This sets all of the correct components for the player in order for the standard movement to work

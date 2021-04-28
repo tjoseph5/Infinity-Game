@@ -11,6 +11,7 @@ public class Ball_Checker : MonoBehaviour
     public enum BallColor { Red, Green, Yellow, Blue, Purple};
     public BallColor ballColor = BallColor.Red;
     [SerializeField] Material[] materials = new Material[5];
+    public DoorConditions doorConditions;
 
 
     void Start()
@@ -82,6 +83,7 @@ public class Ball_Checker : MonoBehaviour
                 Debug.Log("Correct Hole");
                 if (other.tag != "Holdable")
                 {
+                    doorConditions.colorBalls += 1;
                     Destroy(gameObject);
                 }
             }
