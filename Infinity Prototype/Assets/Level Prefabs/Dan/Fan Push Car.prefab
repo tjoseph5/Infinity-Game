@@ -20565,7 +20565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3841126202439434641, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4147536254550522353, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: m_Name
@@ -20659,7 +20659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3841126202439434641, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4147536254550522353, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: m_Name
@@ -21733,6 +21733,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9002325451903028954}
     m_Modifications:
+    - target: {fileID: 990037933884025583, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
+      propertyPath: m_Size.x
+      value: 2.1159399
+      objectReference: {fileID: 0}
+    - target: {fileID: 990037933884025583, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
+      propertyPath: m_Center.x
+      value: -1.9420272
+      objectReference: {fileID: 0}
     - target: {fileID: 990037933884025584, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: windStrength
       value: 5
@@ -21795,7 +21803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3841126202439434641, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4147536254550522353, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: m_Name
@@ -22861,7 +22869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3841126202439434641, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4147536254550522353, guid: 709c5a8620c86ec4081113bebc4174a5, type: 3}
       propertyPath: m_Name

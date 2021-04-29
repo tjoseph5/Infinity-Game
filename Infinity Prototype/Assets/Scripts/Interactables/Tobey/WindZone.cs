@@ -13,23 +13,47 @@ public class WindZone : MonoBehaviour
 
     PlayerMovement player;
 
+    [SerializeField] bool inTube = false; //checks if the windzone itself is a tube windzone. This is for tube camera purposes
+
+    private void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
+
 
     //This adds any gameObject with a rigidbody component to the WindZoneRbs list on collision
     private void OnTriggerEnter(Collider other)
     {
-        Rigidbody objectRigid = other.gameObject.GetComponent<Rigidbody>();
-
-        if(objectRigid != null)
+        if (other.GetComponent<Rigidbody>())
         {
-            WindZoneRbs.Add(objectRigid);
+            Rigidbody objectRigid = other.gameObject.GetComponent<Rigidbody>();
+
+            if (objectRigid != null)
+            {
+                WindZoneRbs.Add(objectRigid);
+            }
+
+            if (player.grabbedObj != null && player.grabbing)
+            {
+                if (other.gameObject == player.grabbedObj)
+                {
+                    player.grabbing = false;
+                    player.grabbedObj = null;
+                }
+            }
         }
 
-        if(player.grabbedObj != null && player.grabbing)
+        if(other.tag == "Player" && player.playerState == PlayerMovement.PlayerState.Ball && inTube)
         {
-            if(other.gameObject == player.grabbedObj)
+
+            player.wzCamTimer = 1;
+
+            if(player.wzCamTimer > 0)
             {
-                player.grabbing = false;
-                player.grabbedObj = null;
+                player.mainCam.SetActive(false);
+                player.turretCam.SetActive(false);
+                player.miniCam.SetActive(false);
+                player.tubeCam.SetActive(true);
             }
         }
     }
@@ -48,6 +72,14 @@ public class WindZone : MonoBehaviour
     private void Update()
     {
         WindZoneRbs.RemoveAll(WindZoneRbs => WindZoneRbs == null);
+
+        if (player.wzCamTimer <= 0 && player.playerState == PlayerMovement.PlayerState.Ball)
+        {
+            player.mainCam.SetActive(true);
+            player.turretCam.SetActive(false);
+            player.miniCam.SetActive(false);
+            player.tubeCam.SetActive(false);
+        }
     }
 
     //This updates will blow any object with a rigid component away in the respected windzone's Z axis

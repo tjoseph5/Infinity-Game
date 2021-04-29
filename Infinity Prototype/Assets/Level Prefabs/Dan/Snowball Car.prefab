@@ -159,7 +159,7 @@ MonoBehaviour:
   maxColorBalls: 0
   pressureButtons: 0
   maxPressureButoons: 0
-  singleButton: 0
+  singleButton: 1
   canExit: 0
 --- !u!1 &922178434642664531
 GameObject:
