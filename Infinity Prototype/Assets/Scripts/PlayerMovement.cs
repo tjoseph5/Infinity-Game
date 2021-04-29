@@ -594,6 +594,9 @@ public class PlayerMovement : MonoBehaviour
         gravityValue = -9.81f;
         playerSpeed = 4;
         //grabCollider.SetActive(true);
+
+        grabbing = false;
+        grabbedObj = null;
         #endregion
     }
 
@@ -629,6 +632,9 @@ public class PlayerMovement : MonoBehaviour
         mainCam.SetActive(true);
         turretCam.SetActive(false);
         tubeCam.SetActive(false);
+
+        grabbing = false;
+        grabbedObj = null;
         #endregion
     }
     #endregion
