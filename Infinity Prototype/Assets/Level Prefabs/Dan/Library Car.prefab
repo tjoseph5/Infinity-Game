@@ -22099,23 +22099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 572672363927781422}
   dir: 1
-  lights:
-  - {fileID: 448991414853091046}
-  - {fileID: 448991415648410336}
-  - {fileID: 448991415764501880}
-  - {fileID: 448991414971873726}
-  - {fileID: 448991416405531383}
-  - {fileID: 448991415604790490}
-  - {fileID: 448991415648975240}
-  - {fileID: 448991414711191556}
-  - {fileID: 448991415547296380}
-  - {fileID: 448991415870765837}
-  platforms:
-  - {fileID: 448991414918292115}
-  - {fileID: 448991415393130665}
-  - {fileID: 448991414890603186}
-  - {fileID: 448991414497796649}
-  - {fileID: 448991416153839221}
+  lightManager: {fileID: 8121621958036472787}
 --- !u!1 &572672365244003048
 GameObject:
   m_ObjectHideFlags: 0
@@ -38856,6 +38840,7 @@ Transform:
   - {fileID: 3230601375725673755}
   - {fileID: 448991416440188890}
   - {fileID: 661238429979526356}
+  - {fileID: 6198003275004659470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -41159,6 +41144,67 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &3393336617624410851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6198003275004659470}
+  - component: {fileID: 8121621958036472787}
+  m_Layer: 0
+  m_Name: Light Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6198003275004659470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393336617624410851}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2088120456432456439}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8121621958036472787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393336617624410851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971fc56a0c7c22f419526106da237f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightOn: 0
+  lights:
+  - {fileID: 448991414853091046}
+  - {fileID: 448991415648410336}
+  - {fileID: 448991415764501880}
+  - {fileID: 448991414971873726}
+  - {fileID: 448991416405531383}
+  - {fileID: 448991415604790490}
+  - {fileID: 448991415648975240}
+  - {fileID: 448991414711191556}
+  - {fileID: 448991415547296380}
+  - {fileID: 448991415870765837}
+  platforms:
+  - {fileID: 448991414918292115}
+  - {fileID: 448991415393130665}
+  - {fileID: 448991414890603186}
+  - {fileID: 448991414497796649}
+  - {fileID: 448991416153839221}
 --- !u!1 &3829728997475774203
 GameObject:
   m_ObjectHideFlags: 0
@@ -44027,23 +44073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5563177146958922070}
   dir: 1
-  lights:
-  - {fileID: 448991414853091046}
-  - {fileID: 448991415648410336}
-  - {fileID: 448991415764501880}
-  - {fileID: 448991414971873726}
-  - {fileID: 448991416405531383}
-  - {fileID: 448991415604790490}
-  - {fileID: 448991415648975240}
-  - {fileID: 448991414711191556}
-  - {fileID: 448991415547296380}
-  - {fileID: 448991415870765837}
-  platforms:
-  - {fileID: 448991414918292115}
-  - {fileID: 448991415393130665}
-  - {fileID: 448991414890603186}
-  - {fileID: 448991414497796649}
-  - {fileID: 448991416153839221}
+  lightManager: {fileID: 8121621958036472787}
 --- !u!1 &5617562241781510821
 GameObject:
   m_ObjectHideFlags: 0
@@ -51138,23 +51168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6236216204725145202}
   dir: 1
-  lights:
-  - {fileID: 448991414853091046}
-  - {fileID: 448991415648410336}
-  - {fileID: 448991415764501880}
-  - {fileID: 448991414971873726}
-  - {fileID: 448991416405531383}
-  - {fileID: 448991415604790490}
-  - {fileID: 448991415648975240}
-  - {fileID: 448991414711191556}
-  - {fileID: 448991415547296380}
-  - {fileID: 448991415870765837}
-  platforms:
-  - {fileID: 448991414918292115}
-  - {fileID: 448991415393130665}
-  - {fileID: 448991414890603186}
-  - {fileID: 448991414497796649}
-  - {fileID: 448991416153839221}
+  lightManager: {fileID: 8121621958036472787}
 --- !u!1 &6849928508021046198
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject miniCam;
     public GameObject turretCam; //The character specifically for Turret state
     public GameObject tubeCam; //Camera that is specific to when the player is inside a tube
-    public float wzCamTimer; //this automatically sets the tube cam to false after activation, once the player exits a tube
+    [HideInInspector ]public float wzCamTimer; //this automatically sets the tube cam to false after activation, once the player exits a tube
     #endregion
 
     #region Raycast Setup
