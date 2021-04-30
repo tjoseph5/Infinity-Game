@@ -45,6 +45,7 @@ public class Cannon : MonoBehaviour
                     {
                         playerBall.transform.position = shotPos.transform.position;
                         playerBall.transform.rotation = shotPos.transform.rotation;
+                        playerBall.GetComponent<Rigidbody>().velocity = Vector3.zero;
                     }
                     break;
 
