@@ -16,8 +16,10 @@ public class PlayerMovement : MonoBehaviour
     #region Camera Stuff
     private Transform cameraMainTransform; //The Transform of the main Camera
     public GameObject mainCam; //The main FreeLook camera (used for every player state, except Turret)
+    public GameObject miniCam;
     public GameObject turretCam; //The character specifically for Turret state
     public GameObject tubeCam; //Camera that is specific to when the player is inside a tube
+    [HideInInspector ]public float wzCamTimer; //this automatically sets the tube cam to false after activation, once the player exits a tube
     #endregion
 
     #region Raycast Setup
@@ -97,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
         mainCam.SetActive(true);
         turretCam.SetActive(false);
+        miniCam.SetActive(false);
+        tubeCam.SetActive(false);
     }
 
     void Update()
@@ -125,6 +129,12 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
         #endregion
+
+
+        if (wzCamTimer > 0)
+        {
+            wzCamTimer -= 1 * Time.deltaTime;
+        }
     }
 
     void FixedUpdate()
@@ -539,7 +549,9 @@ public class PlayerMovement : MonoBehaviour
         canGrow = false;
 
         mainCam.SetActive(true);
+        miniCam.SetActive(false);
         turretCam.SetActive(false);
+        tubeCam.SetActive(false);
         #endregion
 
         #region Player Values
@@ -547,7 +559,7 @@ public class PlayerMovement : MonoBehaviour
         jumpHeight = 3.3f;
         springHeight = 5;
         enemyBounce = 5;
-        subRb.gameObject.SetActive(true);
+        //subRb.gameObject.SetActive(true);
         gravityValue = -18.27f;
         playerSpeed = 8;
         #endregion
@@ -567,8 +579,10 @@ public class PlayerMovement : MonoBehaviour
         //transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
         canGrow = true;
 
-        mainCam.SetActive(true);
+        miniCam.SetActive(true);
+        mainCam.SetActive(false);
         turretCam.SetActive(false);
+        tubeCam.SetActive(false);
         #endregion
 
         #region Player Values
@@ -580,6 +594,9 @@ public class PlayerMovement : MonoBehaviour
         gravityValue = -9.81f;
         playerSpeed = 4;
         //grabCollider.SetActive(true);
+
+        grabbing = false;
+        grabbedObj = null;
         #endregion
     }
 
@@ -610,6 +627,14 @@ public class PlayerMovement : MonoBehaviour
         rb.mass = 1.3f;
         rb.angularDrag = 1.5f;
         gameObject.GetComponent<BallRicochet>().speedStrengh = 3;
+
+        miniCam.SetActive(false);
+        mainCam.SetActive(true);
+        turretCam.SetActive(false);
+        tubeCam.SetActive(false);
+
+        grabbing = false;
+        grabbedObj = null;
         #endregion
     }
     #endregion

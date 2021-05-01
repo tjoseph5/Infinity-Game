@@ -7,10 +7,7 @@ public class Pressable_Button : MonoBehaviour
     public Rigidbody rb;
     public int dir;
 
-    public GameObject[] lights;
-    public BoxCollider[] platforms;
-
-    bool lightOn;
+    public LightManager lightManager;
     
     void Start()
     {
@@ -19,34 +16,7 @@ public class Pressable_Button : MonoBehaviour
 
     private void Update()
     {
-        if (lightOn)
-        {
-            foreach (GameObject light in lights)
-            {
-                light.SetActive(true);
-            }
 
-            foreach (BoxCollider platform in platforms)
-            {
-                platform.enabled = false;
-                platform.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                platform.gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            }
-        }
-        else if (!lightOn)
-        {
-            foreach (GameObject light in lights)
-            {
-                light.SetActive(false);
-            }
-
-            foreach (BoxCollider platform in platforms)
-            {
-                platform.enabled = true;
-                platform.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                platform.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-            }
-        }
     }
 
     public void ButtonPress()
@@ -54,15 +24,17 @@ public class Pressable_Button : MonoBehaviour
         //put button stuff
         StartCoroutine("Press");
 
-        if (lightOn)
+        if(lightManager != null)
         {
-            lightOn = false;
-        } 
-        else if (!lightOn)
-        {
-            lightOn = true;
-        }
-       
+            if (lightManager.lightOn)
+            {
+                lightManager.lightOn = false;
+            }
+            else if (!lightManager.lightOn)
+            {
+                lightManager.lightOn = true;
+            }
+        }  
     }
     //this animates the button being pressed
     IEnumerator Press()

@@ -107,6 +107,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 123612636790741724}
     m_Modifications:
     - target: {fileID: 7517166586719895912, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
+      propertyPath: inTube
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517166586719895912, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
       propertyPath: windStrength
       value: 100
       objectReference: {fileID: 0}
@@ -209,6 +213,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 123612636790741724}
     m_Modifications:
     - target: {fileID: 7517166586719895912, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
+      propertyPath: inTube
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517166586719895912, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
       propertyPath: windStrength
       value: 100
       objectReference: {fileID: 0}
@@ -310,6 +318,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 123612636790741724}
     m_Modifications:
+    - target: {fileID: 7517166586719895912, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
+      propertyPath: inTube
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7517166586719895912, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
       propertyPath: windStrength
       value: 100
