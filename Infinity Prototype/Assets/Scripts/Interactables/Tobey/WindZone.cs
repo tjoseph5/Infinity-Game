@@ -93,7 +93,16 @@ public class WindZone : MonoBehaviour
             {
                 if(rigid.gameObject.transform.localScale.x < 3 && rigid.gameObject.transform.localScale.y < 3  && rigid.gameObject.transform.localScale.z < 3)
                 {
-                    rigid.AddForce(windDirection * windStrength);
+                    switch (inTube)
+                    {
+                        case true:
+                            rigid.velocity = (windDirection * windStrength);
+                            break;
+                        case false:
+                            rigid.AddForce(windDirection * windStrength);
+                            break;
+                    }
+
                 }
             }
         }
