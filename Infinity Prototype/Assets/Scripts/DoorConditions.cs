@@ -30,7 +30,7 @@ public class DoorConditions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(points == maxPoints && colorBalls == maxColorBalls && pressureButtons == maxPressureButoons && singleButton)
+        if(points >= maxPoints && colorBalls >= maxColorBalls && pressureButtons >= maxPressureButoons && singleButton)
         {
             canExit = true;
         }
