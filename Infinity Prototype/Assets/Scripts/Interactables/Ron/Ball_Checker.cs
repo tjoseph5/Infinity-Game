@@ -13,9 +13,12 @@ public class Ball_Checker : MonoBehaviour
     [SerializeField] Material[] materials = new Material[5];
     public DoorConditions doorConditions;
 
+    PlayerMovement player;
 
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
         switch (ballColor) //Tobey - I moved this from Update to Start in order to save memory
         {
             case BallColor.Red:
@@ -97,6 +100,15 @@ public class Ball_Checker : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
-        } 
+        }
+
+        if (player.grabbedObj != null && player.grabbing)
+        {
+            if (other.gameObject == player.grabbedObj)
+            {
+                player.grabbing = false;
+                player.grabbedObj = null;
+            }
+        }
     }
 }

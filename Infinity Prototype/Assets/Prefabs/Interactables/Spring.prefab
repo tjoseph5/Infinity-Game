@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8639071330795177778}
   - component: {fileID: 8639071330795177789}
   - component: {fileID: 8639071330795177788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spring Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8639071331438774380}
   - component: {fileID: 8639071331438774383}
   - component: {fileID: 8639071331438774382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spring Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8639071331525302352}
   - component: {fileID: 8639071331525302353}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spring Collision
   m_TagString: Spring
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8639071331876540216}
   - component: {fileID: 8639071331876540217}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

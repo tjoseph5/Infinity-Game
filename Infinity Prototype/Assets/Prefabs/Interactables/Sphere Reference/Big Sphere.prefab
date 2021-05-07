@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3416233363859520923}
   - component: {fileID: 3416233363859520922}
   - component: {fileID: 3416233363859520921}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big Sphere
   m_TagString: Holdable
   m_Icon: {fileID: 0}

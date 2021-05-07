@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool grabbing = false; //Ron - bool for determining whether the player is grabbing
     public GameObject grabPos; //Ron - this is the position of the grabbed object that is being held
     GameObject grabCollider;
+
+    public Transform respawnPoint;
     #endregion
 
     #region Player States
@@ -94,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         }
         */
         subRb.SetActive(false);
+        //respawnPoint = GameObject.Find("Player Respawn Point").transform;
 
         canGrow = true;
 
@@ -101,6 +104,8 @@ public class PlayerMovement : MonoBehaviour
         turretCam.SetActive(false);
         miniCam.SetActive(false);
         tubeCam.SetActive(false);
+
+        PlayerStandardComponents();
     }
 
     void Update()
@@ -134,6 +139,11 @@ public class PlayerMovement : MonoBehaviour
         if (wzCamTimer > 0)
         {
             wzCamTimer -= 1 * Time.deltaTime;
+        }
+
+        if(respawnPoint == null)
+        {
+            respawnPoint = GameObject.FindWithTag("Respawn Point").transform;
         }
     }
 
@@ -253,6 +263,11 @@ public class PlayerMovement : MonoBehaviour
             PlayerStandardComponents();
             canGrow = false;
         }
+
+        if (gameObject.transform.localScale.x == 0.6f && gameObject.transform.localScale.y == 0.6f && gameObject.transform.localScale.z == 0.6f)
+        {
+            MinitoMainCamera();
+        }
         #endregion
 
         #region Raycast Actions
@@ -265,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.DrawRay(this.transform.position, rayDir * rayLength, Color.red, 0.5f); //raycast debug
 
-            if (Physics.Raycast(this.transform.position, rayDir, out rayHit, rayLength, 1 << 0)) //checks to see if raycast is hitting a game object
+            if (Physics.Raycast(this.transform.position, rayDir, out rayHit, rayLength, 1 << 6)) //checks to see if raycast is hitting a game object
             {
                 Debug.Log("hitsomething");
 
@@ -476,6 +491,12 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity += Vector3.up * enemyBounce;
             }
         }
+
+        if (other.tag == "KillObj")
+        {
+            StartCoroutine(DeathSentence());
+            Debug.Log("ow");
+        }
     }
 
     #region State Trigger Events
@@ -600,6 +621,14 @@ public class PlayerMovement : MonoBehaviour
         #endregion
     }
 
+    void MinitoMainCamera()
+    {
+        mainCam.SetActive(true);
+        miniCam.SetActive(false);
+        turretCam.SetActive(false);
+        tubeCam.SetActive(false);
+    }
+
     void PlayerBallComponents()
     {
         #region Components
@@ -636,6 +665,24 @@ public class PlayerMovement : MonoBehaviour
         grabbing = false;
         grabbedObj = null;
         #endregion
+    }
+
+    IEnumerator DeathSentence()
+    {
+        PlayerState storedState;
+        storedState = playerState;
+        yield return new WaitForSeconds(0.01f);
+        playerState = PlayerState.Stationary;
+        gameObject.transform.position = respawnPoint.position;
+        gameObject.transform.rotation = respawnPoint.rotation;
+        if(storedState == PlayerState.Ball)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.Sleep();
+        }
+        yield return new WaitForSeconds(0.5f);
+        playerState = storedState;
     }
     #endregion
 

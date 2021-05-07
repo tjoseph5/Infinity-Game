@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 6224528332221163860}
   - component: {fileID: 7047618979852625649}
   - component: {fileID: 5056094696849953339}
-  - component: {fileID: 5902898561443420473}
   - component: {fileID: 5902898561443420468}
   - component: {fileID: 5902898561443420469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,22 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &5902898561443420473
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6713221241174881262}
-  serializedVersion: 2
-  m_Mass: 0.2
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 3
 --- !u!64 &5902898561443420468
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -127,3 +110,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyedVersion: {fileID: 847916848555212583, guid: 987597dd241683e44895d568898601a6, type: 3}
+  doorConditions: {fileID: 0}

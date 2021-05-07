@@ -7,7 +7,7 @@ public class LevelSpawnTrigger : MonoBehaviour
 
     LevelGeneratorPrototype levelGenerator;
     RigidbodyManager rigidbodyManager;
-    PlayerMovement player;
+    [SerializeField] PlayerMovement player;
 
     public GameObject door;
     DoorConditions doorConditions;
@@ -38,6 +38,7 @@ public class LevelSpawnTrigger : MonoBehaviour
                 rigidbodyManager.ListUpdator();
                 player.playerState = PlayerMovement.PlayerState.Standard;
                 player.PlayerStandardComponents();
+                player.respawnPoint = GameObject.Find("Player Respawn Point").transform;
                 door.SetActive(false);
                 Destroy(gameObject);
             }

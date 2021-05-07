@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5909346754930473983}
   - component: {fileID: 5909346754930473982}
   - component: {fileID: 5909346755235300996}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Button_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1340,7 +1340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5909346754971413633}
   - component: {fileID: 5909346754971413634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pressure_Pad_Trigger
   m_TagString: Pressure_Pad
   m_Icon: {fileID: 0}
@@ -1387,7 +1387,7 @@ GameObject:
   - component: {fileID: 5909346756015995011}
   - component: {fileID: 5909346756015995010}
   - component: {fileID: 5909346756015995009}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Button_Outer_Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

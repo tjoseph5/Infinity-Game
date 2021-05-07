@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1310054047739116717}
   - component: {fileID: 1310054047739116715}
   - component: {fileID: 1310054047739116716}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Button
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1310054047739116717}
   dir: 1
+  lightManager: {fileID: 0}
 --- !u!1 &1310054048536792683
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ GameObject:
   - component: {fileID: 1310054048536792680}
   - component: {fileID: 1310054048536792681}
   - component: {fileID: 1310054048536792682}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2452489940399083395}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}

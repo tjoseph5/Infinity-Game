@@ -12,11 +12,20 @@ public class CannonMovement : MonoBehaviour
     public enum DirectionalMovement { idle, left_right, up_down, forward_backward }; //Directional states (idle doesn't move, left_right moves by Z axis, up_down moves by Y axis, and forward_backward move by X axis)
     public DirectionalMovement direction = DirectionalMovement.idle;
 
+    Cannon cannon;
+
+    private void Start()
+    {
+        cannon = gameObject.GetComponentInParent<Cannon>();
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        timer += Time.deltaTime; //Makes timer equal the computer's time
+        if (cannon.inMyCannon)
+        {
+            timer += Time.deltaTime; //Makes timer equal the computer's time
+        }
 
         switch (direction) //Defines each state (refer to the comments above)
         {

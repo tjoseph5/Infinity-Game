@@ -7,7 +7,7 @@ public class Cannon : MonoBehaviour
     private Transform shotPos; //Player's set position when entering a cannon
     GameObject playerBall; //the Player Ball
     PlayerMovement playerBallVel; //The velocity of the player ball
-    bool inMyCannon; //Specifies if the player has entered an indivisual cannon rather than any regular cannon (this fixes a glitch that causes the player to only launch from the latest cannon direction)
+    public bool inMyCannon; //Specifies if the player has entered an indivisual cannon rather than any regular cannon (this fixes a glitch that causes the player to only launch from the latest cannon direction)
     CannonMovement cannonMovement; //The CannonMovement script that allows some cannons to move depending on their state
 
     public float cannonstrength; //Launch strength

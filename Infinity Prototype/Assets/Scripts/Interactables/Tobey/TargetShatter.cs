@@ -13,14 +13,12 @@ public class TargetShatter : MonoBehaviour
     void Start()
     {
         playerBall = GameObject.FindGameObjectWithTag("Player");
-        destroyedVersion.transform.localScale = gameObject.transform.localScale;
     }
 
     void Update()
     {
         //destroyedVersion.transform.position = gameObject.transform.position;
         //destroyedVersion.transform.rotation = gameObject.transform.rotation;
-        destroyedVersion.transform.gameObject.transform.localScale = gameObject.transform.localScale;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -41,9 +39,12 @@ public class TargetShatter : MonoBehaviour
 
     void ShatterSpawn()
     {
-        Instantiate(destroyedVersion, gameObject.transform.position, gameObject.transform.rotation, GameObject.Find("End Position").transform);
         doorConditions.points += 1;
-        StartCoroutine(DestroyBuildDestroy());
+        Destroy(gameObject);
+        this.destroyedVersion.transform.localScale = this.transform.localScale;
+        Instantiate(destroyedVersion, gameObject.transform.position, gameObject.transform.rotation, GameObject.Find("End Position").transform);
+
+        //StartCoroutine(DestroyBuildDestroy());
     }
 
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6686212717542763038}
   - component: {fileID: 6686212717542763039}
   - component: {fileID: 8225139116930413551}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Small Sphere
   m_TagString: Holdable
   m_Icon: {fileID: 0}
@@ -124,5 +124,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.56
+  m_Radius: 0.67878735
   m_Center: {x: 0, y: 0, z: 0}
