@@ -12,7 +12,10 @@ public class LightManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        lightOn = true;
+        transform.position = Vector3.zero;
+        transform.rotation = new Quaternion(0,0,0,0);
+        transform.localScale = Vector3.zero;
     }
 
     private void Update()

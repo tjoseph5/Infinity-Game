@@ -13,6 +13,8 @@ TagManager:
   - Spring
   - Ricochet
   - State Trigger
+  - KillObj
+  - Respawn Point
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Interactables
   - 
   - 
   - 

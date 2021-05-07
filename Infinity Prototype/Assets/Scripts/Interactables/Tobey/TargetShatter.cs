@@ -43,6 +43,7 @@ public class TargetShatter : MonoBehaviour
     {
         Instantiate(destroyedVersion, gameObject.transform.position, gameObject.transform.rotation, GameObject.Find("End Position").transform);
         doorConditions.points += 1;
+        Destroy(gameObject);
         StartCoroutine(DestroyBuildDestroy());
     }
 

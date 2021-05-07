@@ -14,10 +14,19 @@ public class LevelGeneratorPrototype : MonoBehaviour
 
     public Vector3 lastEndPosition;
 
+    PlayerMovement player;
+
     void Awake()
     {
         lastEndPosition = levelStart.Find("End Position").position;
         SpawnLevelPart();
+
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
+
+    private void Start()
+    {
+        player.respawnPoint = GameObject.Find("Player Respawn Point").transform;
     }
 
     void Update()
@@ -27,6 +36,12 @@ public class LevelGeneratorPrototype : MonoBehaviour
         if(GameObject.FindGameObjectsWithTag("Level").Length > 2)
         {
             Destroy(GameObject.FindGameObjectsWithTag("Level")[0]);
+        }
+
+        if(GameObject.FindGameObjectsWithTag("Respawn Point").Length > 1)
+        {
+            Destroy(GameObject.FindGameObjectsWithTag("Respawn Point")[0]);
+            //player.respawnPoint = GameObject.FindWithTag("Respawn Point").transform;
         }
     }
 

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Kill_Other : MonoBehaviour
 {
+
     //This is a simple trigger kill box that kills the player if they enter the trigger
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            //other.transform.localPosition = new Vector3(5,5,5);
+            Debug.Log("get hurted");
         }
     }
 }
