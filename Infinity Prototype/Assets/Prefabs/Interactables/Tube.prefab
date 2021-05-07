@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6980463158382130067}
   - component: {fileID: 5132802903429449561}
   - component: {fileID: 5835245279387228942}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tube
-  m_TagString: Untagged
+  m_TagString: Tube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,6 +171,10 @@ PrefabInstance:
     - target: {fileID: 7517166586719895914, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
       propertyPath: m_Name
       value: Wind Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7517166586719895914, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7517166586719895927, guid: 1d5d8fd0dcf9bff44a0d9e4147113a7f, type: 3}
       propertyPath: m_Size.x

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3139933593671316353}
   - component: {fileID: 5901048184900526151}
   - component: {fileID: 6849597092561234546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball_Blue
   m_TagString: Holdable
   m_Icon: {fileID: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 32b6084a47844714e94a2b7a0b81c3a7, type: 2}
   - {fileID: 2100000, guid: 01b0bf44c0e6e254f8ef53a104ad6c94, type: 2}
   - {fileID: 2100000, guid: 32d9806865a696244b00256425975b8f, type: 2}
+  doorConditions: {fileID: 0}
 --- !u!54 &5901048184900526151
 Rigidbody:
   m_ObjectHideFlags: 0

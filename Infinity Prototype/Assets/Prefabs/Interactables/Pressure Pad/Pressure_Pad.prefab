@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6991533406379833544}
   - component: {fileID: 6991533406379833551}
   - component: {fileID: 6991533406379833550}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pressure_Pad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1380,7 +1380,7 @@ GameObject:
   - component: {fileID: 6991533407550258370}
   - component: {fileID: 6991533407550258396}
   - component: {fileID: 6991533407550258371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pad Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

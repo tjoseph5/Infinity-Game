@@ -280,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.DrawRay(this.transform.position, rayDir * rayLength, Color.red, 0.5f); //raycast debug
 
-            if (Physics.Raycast(this.transform.position, rayDir, out rayHit, rayLength, 1 << 0)) //checks to see if raycast is hitting a game object
+            if (Physics.Raycast(this.transform.position, rayDir, out rayHit, rayLength, 1 << 6)) //checks to see if raycast is hitting a game object
             {
                 Debug.Log("hitsomething");
 

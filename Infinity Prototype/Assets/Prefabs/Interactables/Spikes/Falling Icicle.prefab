@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8596977628770912721}
   - component: {fileID: 8596977628770912723}
   - component: {fileID: 5385831237517228052}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Falling Icicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -840,7 +840,7 @@ GameObject:
   - component: {fileID: 8596977628221775690}
   - component: {fileID: 8596977628221775689}
   - component: {fileID: 1040332336769209516}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Icicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

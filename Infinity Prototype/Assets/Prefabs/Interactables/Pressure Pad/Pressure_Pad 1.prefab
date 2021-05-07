@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7420548272297380737}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pressure_Pad 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

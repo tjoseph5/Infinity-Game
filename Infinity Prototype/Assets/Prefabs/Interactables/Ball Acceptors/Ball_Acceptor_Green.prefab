@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2002759354951018178}
   - component: {fileID: 2002759354951018177}
   - component: {fileID: 2002759354951018176}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball_Acceptor_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1343,7 +1343,7 @@ GameObject:
   - component: {fileID: 2002759355732555653}
   - component: {fileID: 2002759355732555654}
   - component: {fileID: 8091585682604099373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball_Checker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,3 +1397,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  doorConditions: {fileID: 0}

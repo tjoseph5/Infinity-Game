@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4562756260535407119}
   - component: {fileID: 4562756260535407116}
   - component: {fileID: 4562756260535407117}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: State Trigger
   m_TagString: State Trigger
   m_Icon: {fileID: 0}

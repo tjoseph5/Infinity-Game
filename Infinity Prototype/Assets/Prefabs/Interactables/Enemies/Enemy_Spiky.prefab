@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6874545147098400592}
   - component: {fileID: 6874545147098400586}
   - component: {fileID: 6874545147098400587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Spiky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6874545147152140860}
   - component: {fileID: 6874545147152140858}
   - component: {fileID: 6874545147152140859}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Killbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9168749839241865110}
   - component: {fileID: 9168749839241865099}
   - component: {fileID: 7014720944844388968}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db433f11cff67ac40b9a93e34e6e11f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inMyCannon: 0
   cannonstrength: 150
   movementSpeed: 0
-  interactControl: {fileID: 3860830824011534203, guid: 076a2ee7844934a488cf19c2f96b2ffb, type: 3}
 --- !u!114 &7014720944844388968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9168749839473751908}
   - component: {fileID: 9168749839473751195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hidden pic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9168749839795714234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cannon Ball Holder
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
