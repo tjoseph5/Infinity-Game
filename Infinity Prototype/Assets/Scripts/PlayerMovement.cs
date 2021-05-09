@@ -125,10 +125,6 @@ public class PlayerMovement : MonoBehaviour
                 TurretControls();
                 break;
 
-            case PlayerState.Ball: //This state has the player turn into a ball. This adds a rigidbody to the player component as well as changing the mesh and collider.
-                BallMovement();
-                break;
-
             case PlayerState.Mini: //This state scales the player to a small size of 0.3. This uses the same function as Standard State.
                 StandardMovement();
                 break;
@@ -150,6 +146,11 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if(playerState == PlayerState.Ball)
+        {
+            BallMovement();
+        }
+
+        if (playerState == PlayerState.Ball)
         {
             if (rb.velocity.magnitude > ballVelocityCap) //Limits velocity for the ball so it won't break the sound barrier and cause multiple glitches with collision detection
             {
@@ -610,7 +611,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         jumpHeight = 1.5f;
         springHeight = 6.7f;
-        enemyBounce = 6.4f;
+        enemyBounce = 1.4f;
         subRb.gameObject.SetActive(false);
         gravityValue = -9.81f;
         playerSpeed = 4;
@@ -644,7 +645,7 @@ public class PlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         transform.localScale = new Vector3(1, 1, 1);
         springHeight = 100;
-        playerSpeed = 8;
+        playerSpeed = 16;
         //grabCollider.SetActive(false);
         
         //transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y * 0, transform.eulerAngles.z * 0);
