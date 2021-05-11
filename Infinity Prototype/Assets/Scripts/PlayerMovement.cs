@@ -210,7 +210,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         //Ronnie Audio Part for walking and stuff:
-        if (playerState == PlayerState.Standard)
+        if (playerState == PlayerState.Standard || playerState == PlayerState.Mini)
         {
             if ((move.x > 0 || move.z > 0) && !walking && groundedPlayer)
             {
@@ -360,6 +360,7 @@ public class PlayerMovement : MonoBehaviour
                                 grabbing = true;
                                 Debug.Log("object grabbed");
                                 //Destroy(rayHit.collider.gameObject);
+                                StartCoroutine("Pick_Up");
                             }
 
                             if (playerState == PlayerState.Mini)
@@ -372,6 +373,7 @@ public class PlayerMovement : MonoBehaviour
                                         grabbing = true;
                                         Debug.Log("object grabbed");
                                         //Destroy(rayHit.collider.gameObject);
+                                        StartCoroutine("Pick_Up");
                                     }
                                 }
                             }
@@ -382,6 +384,7 @@ public class PlayerMovement : MonoBehaviour
                             grabbing = false;
                             grabbedObj = null;
                             //Destroy(grabbedObj);
+                            StartCoroutine("Put_Down");
                         }
                     }
                     
@@ -775,5 +778,18 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(soundEffects[2].length);
     }
 
+    IEnumerator Pick_Up()
+    {
+        audio.clip = soundEffects[3];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[3].length);
+    }
+
+    IEnumerator Put_Down()
+    {
+        audio.clip = soundEffects[4];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[4].length);
+    }
     #endregion
 }
