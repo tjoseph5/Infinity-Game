@@ -73,6 +73,13 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public GameObject grabbedObj; //Ron - this is for keeping access to the game object so that it can be moved
     #endregion
 
+    #region Sound Effects
+    //ronnie added bit:
+    public AudioClip[] soundEffects = new AudioClip[9]; //This is where the sound effects are stored on the player
+    [HideInInspector] public AudioSource audio; //audio source for player
+    [HideInInspector] public bool walking = false;
+    #endregion
+
     void Awake()
     {
         rayDir = this.transform.TransformVector(gameObject.transform.forward); //vector direction placement for raycast
@@ -104,6 +111,10 @@ public class PlayerMovement : MonoBehaviour
         turretCam.SetActive(false);
         miniCam.SetActive(false);
         tubeCam.SetActive(false);
+
+        //Ronnie added part:
+        //This line sets up the audiosource as the audio source on the player gamobject
+        audio = GetComponent<AudioSource>();
 
         PlayerStandardComponents();
     }
@@ -197,7 +208,24 @@ public class PlayerMovement : MonoBehaviour
         move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-
+        //Ronnie Audio Part for walking and stuff:
+        if (playerState == PlayerState.Standard)
+        {
+            if ((move.x > 0 || move.z > 0) && !walking && groundedPlayer)
+            {
+                StartCoroutine("Walk");
+                walking = true;
+            }
+            else if (move.x == 0 && move.z == 0)
+            {
+                StopCoroutine("Walk");
+                walking = false;
+            }else if (!groundedPlayer && walking)
+            {
+                StopCoroutine("Walk");
+                walking = false;
+            }
+        }
 
         // Changes the height position of the player..
         if (jumpControl.action.triggered && groundedPlayer)
@@ -705,5 +733,17 @@ public class PlayerMovement : MonoBehaviour
         turretZoomIn.action.Disable();
         turretShoot.action.Disable();
     }
+    #endregion
+
+    #region Sound Effect Coroutines
+
+    IEnumerator Walk()
+    {
+        audio.clip = soundEffects[0];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[0].length);
+        StartCoroutine("Walk");
+    }
+
     #endregion
 }
