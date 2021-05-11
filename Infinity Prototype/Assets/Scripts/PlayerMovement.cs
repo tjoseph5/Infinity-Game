@@ -77,7 +77,8 @@ public class PlayerMovement : MonoBehaviour
     //ronnie added bit:
     public AudioClip[] soundEffects = new AudioClip[9]; //This is where the sound effects are stored on the player
     [HideInInspector] public AudioSource audio; //audio source for player
-    [HideInInspector] public bool walking = false;
+    [HideInInspector] public bool walking = false; //walking bool
+    [HideInInspector] public bool airborne = false;//jumping bool
     #endregion
 
     void Awake()
@@ -231,10 +232,24 @@ public class PlayerMovement : MonoBehaviour
         if (jumpControl.action.triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            
+            //Ronnie added part
+            StartCoroutine("Jump");
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        //Ronnie added part
+        if (airborne && groundedPlayer)
+        {
+            StartCoroutine("Land");
+            airborne = false;
+        }else if (!airborne && !groundedPlayer)
+        {
+            airborne = true;
+        }
+
 
         if (movement != Vector2.zero)
         {
@@ -743,6 +758,21 @@ public class PlayerMovement : MonoBehaviour
         audio.Play();
         yield return new WaitForSeconds(soundEffects[0].length);
         StartCoroutine("Walk");
+    }
+
+    IEnumerator Jump()
+    {
+        audio.clip = soundEffects[1];
+        audio.Play();
+        yield return new WaitForSeconds(0.1f);
+        airborne = true;
+    }
+
+    IEnumerator Land()
+    {
+        audio.clip = soundEffects[2];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[2].length);
     }
 
     #endregion
