@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region Sound Effects
     //ronnie added bit:
-    public AudioClip[] soundEffects = new AudioClip[9]; //This is where the sound effects are stored on the player
+    public AudioClip[] soundEffects = new AudioClip[10]; //This is where the sound effects are stored on the player
     [HideInInspector] public AudioSource audio; //audio source for player
     [HideInInspector] public bool walking = false; //walking bool
     [HideInInspector] public bool airborne = false;//jumping bool
@@ -211,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         //Ronnie Audio Part for walking and stuff:
-        if (playerState == PlayerState.Standard || playerState == PlayerState.Mini)
+        if (playerState == PlayerState.Standard)
         {
             if ((move.x > 0 || move.z > 0) && !walking && groundedPlayer)
             {
@@ -225,6 +225,23 @@ public class PlayerMovement : MonoBehaviour
             }else if (!groundedPlayer && walking)
             {
                 StopCoroutine("Walk");
+                walking = false;
+            }
+        }else if (playerState == PlayerState.Mini)
+        {
+            if ((move.x > 0 || move.z > 0) && !walking && groundedPlayer)
+            {
+                StartCoroutine("Mini_Walk");
+                walking = true;
+            }
+            else if (move.x == 0 && move.z == 0)
+            {
+                StopCoroutine("Mini_Walk");
+                walking = false;
+            }
+            else if (!groundedPlayer && walking)
+            {
+                StopCoroutine("Mini_Walk");
                 walking = false;
             }
         }
@@ -347,6 +364,7 @@ public class PlayerMovement : MonoBehaviour
                     if (rayHit.collider.tag == "Button")
                     {
                         rayHit.collider.gameObject.GetComponent<Pressable_Button>().ButtonPress();
+                        StartCoroutine("Button");
                     }
 
                     //Ronnie Part to grab objects
@@ -551,10 +569,12 @@ public class PlayerMovement : MonoBehaviour
             if(playerState == PlayerState.Standard || playerState == PlayerState.Mini)
             {
                 playerVelocity.y += Mathf.Sqrt(springHeight * -3.0f * gravityValue);
+                StartCoroutine("Bounce");
             } 
             else if(playerState == PlayerState.Ball)
             {
                 rb.velocity += Vector3.up * springHeight;
+                StartCoroutine("Bounce");
             }
         }
 
@@ -597,6 +617,7 @@ public class PlayerMovement : MonoBehaviour
                             rolling = false;
                             StopCoroutine("Walk");
                             StopCoroutine("Roll");
+                            StopCoroutine("Mini_Walk");
                         }
                         else
                         {
@@ -614,6 +635,7 @@ public class PlayerMovement : MonoBehaviour
                             rolling = false;
                             StopCoroutine("Walk");
                             StopCoroutine("Roll");
+                            StopCoroutine("Mini_Walk");
                         }
                         else
                         {
@@ -631,6 +653,7 @@ public class PlayerMovement : MonoBehaviour
                             rolling = false;
                             StopCoroutine("Walk");
                             StopCoroutine("Roll");
+                            StopCoroutine("Mini_Walk");
                         }
                         else
                         {
@@ -759,9 +782,12 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DeathSentence()
     {
+        //Ronnie added stuff Ask Tobey About thiss <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        StartCoroutine("Death");
+
         PlayerState storedState;
         storedState = playerState;
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.1f);
         playerState = PlayerState.Stationary;
         gameObject.transform.position = respawnPoint.position;
         gameObject.transform.rotation = respawnPoint.rotation;
@@ -848,6 +874,49 @@ public class PlayerMovement : MonoBehaviour
         audio.clip = soundEffects[6];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[6].length);
+    }
+
+    IEnumerator Mini_Walk()
+    {
+        audio.clip = soundEffects[7];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[7].length);
+        StartCoroutine("Mini_Walk");
+    }
+
+    IEnumerator Death()
+    {
+        audio.clip = soundEffects[8];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[8].length);
+    }
+
+    IEnumerator Bounce()
+    {
+        audio.clip = soundEffects[9];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[9].length);
+    }
+
+    IEnumerator Collect()
+    {
+        audio.clip = soundEffects[10];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[10].length);
+    }
+
+    IEnumerator Collect_Grow()
+    {
+        audio.clip = soundEffects[11];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[11].length);
+    }
+
+    IEnumerator Button()
+    {
+        audio.clip = soundEffects[12];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[12].length);
     }
     #endregion
 }

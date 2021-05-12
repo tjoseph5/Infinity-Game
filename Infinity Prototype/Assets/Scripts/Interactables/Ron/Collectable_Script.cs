@@ -26,12 +26,14 @@ public class Collectable_Script : MonoBehaviour
         {
             if (variant == Variant.Normal)
             {
+                other.gameObject.GetComponent<PlayerMovement>().StartCoroutine("Collect");
                 Destroy(gameObject);
                 Debug.Log("Add a point");
                 doorConditions.points += 1;
             } 
             else if(variant == Variant.Growth && other.transform.localScale != Vector3.one && player.GetComponent<PlayerMovement>().playerState == PlayerMovement.PlayerState.Mini) //Tobey - Checks if the player is basically in Mini
             {
+                other.gameObject.GetComponent<PlayerMovement>().StartCoroutine("Collect_Grow");
                 PlayerMathStuff(other.gameObject);
                 Destroy(gameObject);
                 Debug.Log("Add a point");
