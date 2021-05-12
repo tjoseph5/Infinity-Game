@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public AudioSource audio; //audio source for player
     [HideInInspector] public bool walking = false; //walking bool
     [HideInInspector] public bool airborne = false;//jumping bool
+    [HideInInspector] public bool rolling = false;//rolling bool
     #endregion
 
     void Awake()
@@ -506,9 +507,39 @@ public class PlayerMovement : MonoBehaviour
             move = cameraMainTransform.forward * move.z + cameraMainTransform.right * move.x;
             move.y = 0f;
             rb.AddForce(move * playerSpeed);
+
+            #region Sound Effects for ball
+            //ronnie added part
+
+            groundedPlayer = controller.isGrounded;
+
+            if ((rb.velocity.x > 0 || rb.velocity.z > 0) && !rolling && groundedPlayer)
+            {
+                StartCoroutine("Roll");
+                rolling = true;
+            }
+            else if (rb.velocity.x == 0 && rb.velocity.z == 0)
+            {
+                StopCoroutine("Roll");
+                rolling = false;
+            }
+            else if (!groundedPlayer && rolling)
+            {
+                StopCoroutine("Walk");
+                rolling = false;
+            }
+
+            if (!airborne && !groundedPlayer)
+            {
+                airborne = true;
+            }else if (airborne && groundedPlayer)
+            {
+                StartCoroutine("Land");
+                airborne = false;
+            }
+            #endregion
         }
         #endregion
-
     }
 
     #endregion
@@ -562,6 +593,10 @@ public class PlayerMovement : MonoBehaviour
                             playerState = PlayerState.Standard;
                             PlayerStandardComponents();
                             gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
+                            walking = false;
+                            rolling = false;
+                            StopCoroutine("Walk");
+                            StopCoroutine("Roll");
                         }
                         else
                         {
@@ -575,6 +610,10 @@ public class PlayerMovement : MonoBehaviour
                             playerState = PlayerState.Mini;
                             PlayerMiniComponents();
                             gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
+                            walking = false;
+                            rolling = false;
+                            StopCoroutine("Walk");
+                            StopCoroutine("Roll");
                         }
                         else
                         {
@@ -588,6 +627,10 @@ public class PlayerMovement : MonoBehaviour
                             playerState = PlayerState.Ball;
                             PlayerBallComponents();
                             gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
+                            walking = false;
+                            rolling = false;
+                            StopCoroutine("Walk");
+                            StopCoroutine("Roll");
                         }
                         else
                         {
@@ -790,6 +833,21 @@ public class PlayerMovement : MonoBehaviour
         audio.clip = soundEffects[4];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[4].length);
+    }
+
+    IEnumerator Roll()
+    {
+        audio.clip = soundEffects[5];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[5].length);
+        StartCoroutine("Roll");
+    }
+
+    IEnumerator Land_Ball()
+    {
+        audio.clip = soundEffects[6];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[6].length);
     }
     #endregion
 }
