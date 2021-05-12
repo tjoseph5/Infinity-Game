@@ -824,7 +824,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region Sound Effect Coroutines
 
-    IEnumerator Walk()
+    public IEnumerator Walk()
     {
         audio.clip = soundEffects[0];
         audio.Play();
@@ -832,7 +832,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine("Walk");
     }
 
-    IEnumerator Jump()
+    public IEnumerator Jump()
     {
         audio.clip = soundEffects[1];
         audio.Play();
@@ -840,28 +840,28 @@ public class PlayerMovement : MonoBehaviour
         airborne = true;
     }
 
-    IEnumerator Land()
+    public IEnumerator Land()
     {
         audio.clip = soundEffects[2];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[2].length);
     }
 
-    IEnumerator Pick_Up()
+    public IEnumerator Pick_Up()
     {
         audio.clip = soundEffects[3];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[3].length);
     }
 
-    IEnumerator Put_Down()
+    public IEnumerator Put_Down()
     {
         audio.clip = soundEffects[4];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[4].length);
     }
 
-    IEnumerator Roll()
+    public IEnumerator Roll()
     {
         audio.clip = soundEffects[5];
         audio.Play();
@@ -869,14 +869,14 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine("Roll");
     }
 
-    IEnumerator Land_Ball()
+    public IEnumerator Land_Ball()
     {
         audio.clip = soundEffects[6];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[6].length);
     }
 
-    IEnumerator Mini_Walk()
+    public IEnumerator Mini_Walk()
     {
         audio.clip = soundEffects[7];
         audio.Play();
@@ -884,35 +884,35 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine("Mini_Walk");
     }
 
-    IEnumerator Death()
+    public IEnumerator Death()
     {
         audio.clip = soundEffects[8];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[8].length);
     }
 
-    IEnumerator Bounce()
+    public IEnumerator Bounce()
     {
         audio.clip = soundEffects[9];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[9].length);
     }
 
-    IEnumerator Collect()
+    public IEnumerator Collect()
     {
         audio.clip = soundEffects[10];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[10].length);
     }
 
-    IEnumerator Collect_Grow()
+    public IEnumerator Collect_Grow()
     {
         audio.clip = soundEffects[11];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[11].length);
     }
 
-    IEnumerator Button()
+    public IEnumerator Button()
     {
         audio.clip = soundEffects[12];
         audio.Play();
