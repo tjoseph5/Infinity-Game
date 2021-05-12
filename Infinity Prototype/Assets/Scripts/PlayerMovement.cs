@@ -75,10 +75,11 @@ public class PlayerMovement : MonoBehaviour
 
     #region Sound Effects
     //ronnie added bit:
-    public AudioClip[] soundEffects = new AudioClip[9]; //This is where the sound effects are stored on the player
+    public AudioClip[] soundEffects = new AudioClip[10]; //This is where the sound effects are stored on the player
     [HideInInspector] public AudioSource audio; //audio source for player
     [HideInInspector] public bool walking = false; //walking bool
     [HideInInspector] public bool airborne = false;//jumping bool
+    [HideInInspector] public bool rolling = false;//rolling bool
     #endregion
 
     void Awake()
@@ -226,6 +227,23 @@ public class PlayerMovement : MonoBehaviour
                 StopCoroutine("Walk");
                 walking = false;
             }
+        }else if (playerState == PlayerState.Mini)
+        {
+            if ((move.x > 0 || move.z > 0) && !walking && groundedPlayer)
+            {
+                StartCoroutine("Mini_Walk");
+                walking = true;
+            }
+            else if (move.x == 0 && move.z == 0)
+            {
+                StopCoroutine("Mini_Walk");
+                walking = false;
+            }
+            else if (!groundedPlayer && walking)
+            {
+                StopCoroutine("Mini_Walk");
+                walking = false;
+            }
         }
 
         // Changes the height position of the player..
@@ -346,6 +364,7 @@ public class PlayerMovement : MonoBehaviour
                     if (rayHit.collider.tag == "Button")
                     {
                         rayHit.collider.gameObject.GetComponent<Pressable_Button>().ButtonPress();
+                        StartCoroutine("Button");
                     }
 
                     //Ronnie Part to grab objects
@@ -360,6 +379,7 @@ public class PlayerMovement : MonoBehaviour
                                 grabbing = true;
                                 Debug.Log("object grabbed");
                                 //Destroy(rayHit.collider.gameObject);
+                                StartCoroutine("Pick_Up");
                             }
 
                             if (playerState == PlayerState.Mini)
@@ -372,6 +392,7 @@ public class PlayerMovement : MonoBehaviour
                                         grabbing = true;
                                         Debug.Log("object grabbed");
                                         //Destroy(rayHit.collider.gameObject);
+                                        StartCoroutine("Pick_Up");
                                     }
                                 }
                             }
@@ -382,6 +403,7 @@ public class PlayerMovement : MonoBehaviour
                             grabbing = false;
                             grabbedObj = null;
                             //Destroy(grabbedObj);
+                            StartCoroutine("Put_Down");
                         }
                     }
                     
@@ -503,9 +525,39 @@ public class PlayerMovement : MonoBehaviour
             move = cameraMainTransform.forward * move.z + cameraMainTransform.right * move.x;
             move.y = 0f;
             rb.AddForce(move * playerSpeed);
+
+            #region Sound Effects for ball
+            //ronnie added part
+
+            groundedPlayer = controller.isGrounded;
+
+            if ((rb.velocity.x > 0 || rb.velocity.z > 0) && !rolling && groundedPlayer)
+            {
+                StartCoroutine("Roll");
+                rolling = true;
+            }
+            else if (rb.velocity.x == 0 && rb.velocity.z == 0)
+            {
+                StopCoroutine("Roll");
+                rolling = false;
+            }
+            else if (!groundedPlayer && rolling)
+            {
+                StopCoroutine("Walk");
+                rolling = false;
+            }
+
+            if (!airborne && !groundedPlayer)
+            {
+                airborne = true;
+            }else if (airborne && groundedPlayer)
+            {
+                StartCoroutine("Land");
+                airborne = false;
+            }
+            #endregion
         }
         #endregion
-
     }
 
     #endregion
@@ -517,10 +569,12 @@ public class PlayerMovement : MonoBehaviour
             if(playerState == PlayerState.Standard || playerState == PlayerState.Mini)
             {
                 playerVelocity.y += Mathf.Sqrt(springHeight * -3.0f * gravityValue);
+                StartCoroutine("Bounce");
             } 
             else if(playerState == PlayerState.Ball)
             {
                 rb.velocity += Vector3.up * springHeight;
+                StartCoroutine("Bounce");
             }
         }
 
@@ -559,6 +613,11 @@ public class PlayerMovement : MonoBehaviour
                             playerState = PlayerState.Standard;
                             PlayerStandardComponents();
                             gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
+                            walking = false;
+                            rolling = false;
+                            StopCoroutine("Walk");
+                            StopCoroutine("Roll");
+                            StopCoroutine("Mini_Walk");
                         }
                         else
                         {
@@ -572,6 +631,11 @@ public class PlayerMovement : MonoBehaviour
                             playerState = PlayerState.Mini;
                             PlayerMiniComponents();
                             gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
+                            walking = false;
+                            rolling = false;
+                            StopCoroutine("Walk");
+                            StopCoroutine("Roll");
+                            StopCoroutine("Mini_Walk");
                         }
                         else
                         {
@@ -585,6 +649,11 @@ public class PlayerMovement : MonoBehaviour
                             playerState = PlayerState.Ball;
                             PlayerBallComponents();
                             gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x * 0, transform.eulerAngles.y, transform.eulerAngles.z * 0);
+                            walking = false;
+                            rolling = false;
+                            StopCoroutine("Walk");
+                            StopCoroutine("Roll");
+                            StopCoroutine("Mini_Walk");
                         }
                         else
                         {
@@ -713,9 +782,12 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DeathSentence()
     {
+        //Ronnie added stuff Ask Tobey About thiss <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        StartCoroutine("Death");
+
         PlayerState storedState;
         storedState = playerState;
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.1f);
         playerState = PlayerState.Stationary;
         gameObject.transform.position = respawnPoint.position;
         gameObject.transform.rotation = respawnPoint.rotation;
@@ -752,7 +824,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region Sound Effect Coroutines
 
-    IEnumerator Walk()
+    public IEnumerator Walk()
     {
         audio.clip = soundEffects[0];
         audio.Play();
@@ -760,7 +832,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine("Walk");
     }
 
-    IEnumerator Jump()
+    public IEnumerator Jump()
     {
         audio.clip = soundEffects[1];
         audio.Play();
@@ -768,12 +840,83 @@ public class PlayerMovement : MonoBehaviour
         airborne = true;
     }
 
-    IEnumerator Land()
+    public IEnumerator Land()
     {
         audio.clip = soundEffects[2];
         audio.Play();
         yield return new WaitForSeconds(soundEffects[2].length);
     }
 
+    public IEnumerator Pick_Up()
+    {
+        audio.clip = soundEffects[3];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[3].length);
+    }
+
+    public IEnumerator Put_Down()
+    {
+        audio.clip = soundEffects[4];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[4].length);
+    }
+
+    public IEnumerator Roll()
+    {
+        audio.clip = soundEffects[5];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[5].length);
+        StartCoroutine("Roll");
+    }
+
+    public IEnumerator Land_Ball()
+    {
+        audio.clip = soundEffects[6];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[6].length);
+    }
+
+    public IEnumerator Mini_Walk()
+    {
+        audio.clip = soundEffects[7];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[7].length);
+        StartCoroutine("Mini_Walk");
+    }
+
+    public IEnumerator Death()
+    {
+        audio.clip = soundEffects[8];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[8].length);
+    }
+
+    public IEnumerator Bounce()
+    {
+        audio.clip = soundEffects[9];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[9].length);
+    }
+
+    public IEnumerator Collect()
+    {
+        audio.clip = soundEffects[10];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[10].length);
+    }
+
+    public IEnumerator Collect_Grow()
+    {
+        audio.clip = soundEffects[11];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[11].length);
+    }
+
+    public IEnumerator Button()
+    {
+        audio.clip = soundEffects[12];
+        audio.Play();
+        yield return new WaitForSeconds(soundEffects[12].length);
+    }
     #endregion
 }
